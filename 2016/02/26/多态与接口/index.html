@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Jim" />
+
+
+
+<meta name="description" content="多态什么是多态
+面向对象三大特性：封装，继承，多态，前两者是为多态而准备的。
+多态的定义：指允许不同类的对象对同一消息做出响应。即同一消息可以根据发送对象的不同而采用多种不同的行为方式。（发送消息就是函数调用）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多态与接口">
+<meta property="og:url" content="http://yoursite.com/2016/02/26/多态与接口/index.html">
+<meta property="og:site_name" content="个人博客 - 记录每一步脚印">
+<meta property="og:description" content="多态什么是多态
+面向对象三大特性：封装，继承，多态，前两者是为多态而准备的。
+多态的定义：指允许不同类的对象对同一消息做出响应。即同一消息可以根据发送对象的不同而采用多种不同的行为方式。（发送消息就是函数调用）。">
+<meta property="og:updated_time" content="2017-03-09T03:30:20.819Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多态与接口">
+<meta name="twitter:description" content="多态什么是多态
+面向对象三大特性：封装，继承，多态，前两者是为多态而准备的。
+多态的定义：指允许不同类的对象对同一消息做出响应。即同一消息可以根据发送对象的不同而采用多种不同的行为方式。（发送消息就是函数调用）。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="个人博客 - 记录每一步脚印" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>多态与接口 | 个人博客 - 记录每一步脚印</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/head.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Jim</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://melonlee.com/">李辉</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Android</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Jim</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/head.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Jim</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-多态与接口" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/26/多态与接口/" class="article-date">
+      <time datetime="2016-02-26T03:29:18.000Z" itemprop="datePublished">2016-02-26</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      多态与接口
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><h3 id="什么是多态"><a href="#什么是多态" class="headerlink" title="什么是多态"></a>什么是多态</h3><ol>
+<li>面向对象三大特性：封装，继承，多态，前两者是为多态而准备的。</li>
+<li>多态的定义：指允许不同类的对象对同一消息做出响应。即同一消息可以根据发送对象的不同而采用多种不同的行为方式。（发送消息就是函数调用）。<a id="more"></a></li>
+<li>实现多态的技术称为：动态绑定（dynamicbinding），是指在执行期间判断所引用对象的实际类型，根据其实际的类型调用其相应的方法。动态绑定又分为前期绑定和后期绑定，除了static和final修饰的其他的都是后期绑定，多态性是基于后期绑定的。</li>
+<li>多态的作用：消除类之间的耦合;</li>
+<li>多态存在的三个必要条件：要有继承，要有重写，父类的引用指向子类的对象。</li>
+</ol>
+<h3 id="多态的好处"><a href="#多态的好处" class="headerlink" title="多态的好处"></a>多态的好处</h3><ol>
+<li>可替换性（substitutability）。多态对已存在代码具有可替换性。例如，多态对圆Circle类工作，对其他任何圆形几何体，如圆环，也同样工作。</li>
+<li>可扩充性（extensibility）。多态对代码具有可扩充性。增加新的子类不影响已存在类的多态性、继承性，以及其他特性的运行和操作。实际上新加子类更容易获得多态功能。例如，在实现了圆锥、半圆锥以及半球体的多态基础上，很容易增添球体类的多态性。</li>
+<li>接口性（interface-ability）。多态是超类通过方法签名，向子类提供了一个共同接口，由子类来完善或者覆盖它而实现的。</li>
+<li>灵活性（flexibility）。它在应用中体现了灵活多样的操作，提高了使用效率。</li>
+<li>简化性（simplicity）。多态简化对应用软件的代码编写和修改过程，尤其在处理大量对象的运算和操作时，这个特点尤为突出和重要。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by k21 on 2017/2/28.</div><div class="line"> * 基类</div><div class="line"> */</div><div class="line">public class Shape &#123;</div><div class="line">    public void draw() &#123;</div><div class="line">        System.out.println(&quot;我能画一些形状&quot;);</div><div class="line">    &#125;</div><div class="line">&#125; </div><div class="line">public class Circle extends Shape &#123;</div><div class="line">    /**</div><div class="line">     * 重写基类中的方法实现自己的如：画圆</div><div class="line">     */</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;我能画圆&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Spuare extends Shape&#123;</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;我能画正方形&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Triangle extends Shape &#123;</div><div class="line">    public void draw()&#123;</div><div class="line">        System.out.println(&quot;我能画三角形&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Main extends F &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        //有一个数组要存储圆形，正方形，三角形</div><div class="line">        Shape[] shapes = new Shape[9];</div><div class="line">        for (int i = 0; i &lt; shapes.length; i++) &#123;</div><div class="line">            if (i % 3 &lt;= 1) &#123;</div><div class="line">                Shape shape = new Circle();//父类的引用指向子类的对象（向上转型）</div><div class="line">                shapes[i] = shape;</div><div class="line">            &#125; else if (i % 3 &gt;= 1 &amp;&amp; i % 3 &lt;= 2) &#123;</div><div class="line">                shapes[i] = new Spuare();</div><div class="line">            &#125; else if (i % 3 &gt;= 2 &amp;&amp; i % 3 &lt;= 3) &#123;</div><div class="line">                shapes[i] = new Triangle();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class A &#123; </div><div class="line">    private int a; </div><div class="line">    public int getA() &#123; </div><div class="line">        return a; </div><div class="line">        &#125; </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>这个类的属性是私有的，外界不能访问，而外界可以通过公有方法来访问这个类。我们说一个类的公有方法就是这个类的对外接口。</li>
+<li>一个类的属性都是私有的，方法大多是公有的。外界只能过个这些公有方法来访问类。这也是Java封装性的体现。如果一个类没有公有属性，也没有公有方法，这个类就是无法使用的类了。所以我们需要为一个类提供对外接口。 </li>
+<li>一个类中的方法，不只是说明了它要”做什么”，而且方法的内容也说明了”怎么做”。，一个杀人方法。从名字上 看，你知道了”做什么”，但没有办法看到“怎么做”。而方法的内容说明了”怎么做”。 </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class killer &#123; </div><div class="line">    private String name; </div><div class="line">    private int age; </div><div class="line">    private String phone; </div><div class="line">    private String addr; </div><div class="line">    ...... </div><div class="line">    public void kill(Person p) &#123; </div><div class="line">        Qiang qiang = new Qiang(&quot;ak47&quot;); </div><div class="line">        qiang.fire(p); </div><div class="line">            &#125; </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这个类的kill方法内容说明了杀人的过程。如果你不想用这种方式杀人。因为你很BT，你想用毒药杀人。那么这个类的内容就需要改。但是，还有很多其它的”客户”，需要用不同的方式杀人。怎么办呢？一个很好的办法就是，我们只定义”做什么”，而不定义”怎么做”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">interface Killer &#123; </div><div class="line">    public void kill(Person p); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接口说明了”做什么”，而实现这个接口的类，也就是实现类需要说明”怎么做”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">class Killer1 implements Killer &#123; </div><div class="line">    public void kill(Person p) &#123; </div><div class="line">        Qiang qiang = new Qiang(&quot;ak47&quot;); </div><div class="line">        qiang.fire(p); </div><div class="line">        &#125; </div><div class="line">    &#125; </div><div class="line">class Killer2 implements Killer &#123; </div><div class="line">    public void kill(Person p) &#123; </div><div class="line">        Bane bane = new Bane(); </div><div class="line">        p.eat(bane); </div><div class="line">        &#125; </div><div class="line">    &#125; </div><div class="line">public class Test &#123; </div><div class="line">    public static void main(String[] args) &#123; </div><div class="line">        Killer jingKe = new Killer1(); </div><div class="line">        Person yingZheng = new Person(); </div><div class="line">        jingKe.kill(yingZheng); </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接口可以把”做什么”和”怎么做”分离开来。这给Java带来了很多好处。虽然代码量增加了，可我们的程序的可维护性加强了。我们的程序是可以拆分的。就象电脑一样，可以拆分成很多组件。</p>
+<h3 id="接口的向上转型和接口回调"><a href="#接口的向上转型和接口回调" class="headerlink" title="接口的向上转型和接口回调"></a>接口的向上转型和接口回调</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">public interface CanEat &#123;</div><div class="line">    void eat();</div><div class="line">&#125;</div><div class="line">public interface CanRun &#123;</div><div class="line">    void run();</div><div class="line">&#125;</div><div class="line">public interface CanSay &#123;</div><div class="line">    void say();</div><div class="line">&#125;</div><div class="line">public class Pig implements CanEat ,CanSay ,CanSleep&#123;</div><div class="line">    public void eat()&#123;</div><div class="line">        System.out.println(&quot;eat&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void say()&#123;</div><div class="line">        System.out.println(&quot;say&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void sleep()&#123;</div><div class="line">        System.out.println(&quot;sleep&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void run(CanRun canRun)&#123;</div><div class="line">        canRun.run();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Main extends F &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        CanEat canEat = new Pig();//（接口的向上转型）</div><div class="line">        canEat.eat();//接口回调 在Pig中已经实现了CanEat接口了，</div><div class="line"></div><div class="line">        Pig pig = new Pig();</div><div class="line">        pig.run(new CanRun() &#123;//接口回调</div><div class="line">            @Override</div><div class="line">            public void run() &#123;</div><div class="line">                System.out.println(&quot;main&quot;);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/02/26/多态与接口/">多态与接口</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
+        <p><span>发布时间:</span>2016-02-26, 11:29:18</p>
+        <p><span>最后更新:</span>2017-03-09, 11:30:20</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/02/26/多态与接口/" title="多态与接口">http://yoursite.com/2016/02/26/多态与接口/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/02/26/多态与接口/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/03/06/并发基础（一）/">
+                    并发基础（一）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/02/19/复用类/">
+                    Java复用类
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#多态"><span class="toc-number">1.</span> <span class="toc-text">多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是多态"><span class="toc-number">1.1.</span> <span class="toc-text">什么是多态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多态的好处"><span class="toc-number">1.2.</span> <span class="toc-text">多态的好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口"><span class="toc-number">2.</span> <span class="toc-text">接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#接口的向上转型和接口回调"><span class="toc-number">2.1.</span> <span class="toc-text">接口的向上转型和接口回调</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"多态与接口　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/03/06/并发基础（一）/" title="上一篇: 并发基础（一）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/02/19/复用类/" title="下一篇: Java复用类">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/并发基础（一）/">并发基础（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/多态与接口/">多态与接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/复用类/">Java复用类</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/10/2016学习规划/">2016学习规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Jim
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

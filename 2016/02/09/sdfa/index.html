@@ -15,12 +15,26 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="个人博客 - 记录每一步脚印">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+<meta name="description" content="环境配置
+1 安装Node
+2 安装Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo搭建个人博客">
+<meta property="og:url" content="http://yoursite.com/2016/02/09/sdfa/index.html">
 <meta property="og:site_name" content="个人博客 - 记录每一步脚印">
+<meta property="og:description" content="环境配置
+1 安装Node
+2 安装Git">
+<meta property="og:image" content="http://yoursite.com/assets/1/a.png">
+<meta property="og:image" content="http://yoursite.com/assets/1/b.png">
+<meta property="og:image" content="http://yoursite.com/assets/1/c.png">
+<meta property="og:updated_time" content="2017-03-09T03:25:07.202Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="个人博客 - 记录每一步脚印">
+<meta name="twitter:title" content="Hexo搭建个人博客">
+<meta name="twitter:description" content="环境配置
+1 安装Node
+2 安装Git">
+<meta name="twitter:image" content="http://yoursite.com/assets/1/a.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -52,7 +66,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2016 | 个人博客 - 记录每一步脚印</title>
+<title>Hexo搭建个人博客 | 个人博客 - 记录每一步脚印</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -62,8 +76,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -250,168 +264,193 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-sdfa" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/02/09/sdfa/" class="article-date">
+      <time datetime="2016-02-09T03:22:43.000Z" itemprop="datePublished">2016-02-09</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hexo搭建个人博客
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/03/06/并发基础（一）/" class="archive-article-date">
-      <time datetime="2016-03-06T03:30:54.000Z" itemprop="datePublished">03-06</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/06/并发基础（一）/">并发基础（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
+        <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ul>
+<li>1 安装Node</li>
+<li>2 安装Git<a id="more"></a></li>
+<li>3 申请GitHub账号（需要激活邮箱，否则后面部署出现404页面）</li>
+<li>4 安装hexo 命令（Windows下）：$ npm install -g hexo</li>
+<li><p>5 初始化 创建一个文件夹，cd到该文件夹执行hexo init命令自动生成如下文件:<br><img src="/assets/1/a.png" alt="Mou icon"></p>
+<blockquote>
+<p>本地生成静态页面（预览作用）</p>
+</blockquote>
+</li>
+<li><p>在init该文件目录下执行 hexo g 生成静态页面</p>
+</li>
+<li>继续执行 hexo server 命令启动本地服务</li>
+<li>浏览器输入 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 可以看到所生成的个人博客（如果失败，环境配置不正确）</li>
+</ul>
+<blockquote>
+<p>建立Repository关联GitHub上传页面</p>
+</blockquote>
+<ul>
+<li>在GitHub里创建仓库，仓库名必须是 用户名.github.io </li>
+<li>打开上图中的_config.yml文件(用Subilme编辑器)建立关联</li>
+<li>在最后添加<br>deploy:<br>type: git<br>repository: git@github.com:zhongyuanwu/zhongyuanwu.github.io.git（刚刚创建仓库的ssh）<br>branch: master</li>
+<li>执行 hexo g</li>
+<li>执行 hexo d 在GitHub上发现如下<br><img src="/assets/1/b.png" alt="Mou icon"><br>在网页上打开 “你的GitHub用户名.github.io”链接出现<br><img src="/assets/1/c.png" alt="Mou icon"><br>表示成功，如果出现404，请检查GitHub邮箱是否验证</li>
+</ul>
+<blockquote>
+<p>配置主题</p>
+</blockquote>
+<ul>
+<li>我所用的主题<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">Yilia</a><br>点入链接下载，把该文件复制到Themes目录下<br>打开首页的_config.yml文件中 拉到最后 修改theme为 yilia，执行命令hexo g  hexo d 或者在本地生成静态页面，</li>
+<li>在主题文件里的_config.yml中可以配置 头像（URL可以是本地的，图片文件放在首页的source目录下，可以是一个外部图片连接） 在首页的_config.yml文件中可以配置姓名 标题</li>
+<li>在首页的source目录下_posts中可以看到 .mc文件用subilme打开发现与博客界面一致</li>
+<li>把写好的Markdown文件放入source中的_posts中，部署即可</li>
+</ul>
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/02/09/sdfa/">Hexo搭建个人博客</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
+        <p><span>发布时间:</span>2016-02-09, 11:22:43</p>
+        <p><span>最后更新:</span>2017-03-09, 11:25:07</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/02/09/sdfa/" title="Hexo搭建个人博客">http://yoursite.com/2016/02/09/sdfa/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/02/09/sdfa/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/02/10/2016学习规划/">
+                    2016学习规划
+                </a>
+            </div>
+        
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/02/26/多态与接口/" class="archive-article-date">
-      <time datetime="2016-02-26T03:29:18.000Z" itemprop="datePublished">02-26</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境配置"><span class="toc-number">1.</span> <span class="toc-text">环境配置</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/26/多态与接口/">多态与接口</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Hexo搭建个人博客　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/02/19/复用类/" class="archive-article-date">
-      <time datetime="2016-02-19T03:28:02.000Z" itemprop="datePublished">02-19</time>
-</a>
+</div>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/19/复用类/">Java复用类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/02/10/2016学习规划/" class="archive-article-date">
-      <time datetime="2016-02-10T02:25:50.000Z" itemprop="datePublished">02-10</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/10/2016学习规划/">2016学习规划</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/02/09/sdfa/" class="archive-article-date">
-      <time datetime="2016-02-09T03:22:43.000Z" itemprop="datePublished">02-09</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/02/10/2016学习规划/" title="上一篇: 2016学习规划">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/09/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/并发基础（一）/">并发基础（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/多态与接口/">多态与接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/复用类/">Java复用类</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/10/2016学习规划/">2016学习规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

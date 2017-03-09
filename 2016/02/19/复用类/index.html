@@ -15,19 +15,22 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="Java复用类组合将对象的引用置于新类中。
+类中域为基本数据类型时能够自动被初始化为0，为对象引用时会被初始化为null。
+组合和继承都允许在新的类中放置子对象，组合是显示地这样做，而继承是隐式地做。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/03/09/hello-world/index.html">
+<meta property="og:title" content="Java复用类">
+<meta property="og:url" content="http://yoursite.com/2016/02/19/复用类/index.html">
 <meta property="og:site_name" content="个人博客 - 记录每一步脚印">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2017-03-09T03:12:51.629Z">
+<meta property="og:description" content="Java复用类组合将对象的引用置于新类中。
+类中域为基本数据类型时能够自动被初始化为0，为对象引用时会被初始化为null。
+组合和继承都允许在新的类中放置子对象，组合是显示地这样做，而继承是隐式地做。">
+<meta property="og:updated_time" content="2017-03-09T03:28:52.869Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="Java复用类">
+<meta name="twitter:description" content="Java复用类组合将对象的引用置于新类中。
+类中域为基本数据类型时能够自动被初始化为0，为对象引用时会被初始化为null。
+组合和继承都允许在新的类中放置子对象，组合是显示地这样做，而继承是隐式地做。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +62,7 @@ Quick">
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hello World | 个人博客 - 记录每一步脚印</title>
+<title>Java复用类 | 个人博客 - 记录每一步脚印</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -257,11 +260,11 @@ Quick">
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-复用类" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/03/09/hello-world/" class="article-date">
-      <time datetime="2017-03-09T03:12:51.629Z" itemprop="datePublished">2017-03-09</time>
+      <a href="/2016/02/19/复用类/" class="article-date">
+      <time datetime="2016-02-19T03:28:02.000Z" itemprop="datePublished">2016-02-19</time>
 </a>
 
 
@@ -276,7 +279,7 @@ Quick">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Java复用类
     </h1>
   
 
@@ -293,15 +296,19 @@ Quick">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h1 id="Java复用类"><a href="#Java复用类" class="headerlink" title="Java复用类"></a>Java复用类</h1><h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><h4 id="将对象的引用置于新类中。"><a href="#将对象的引用置于新类中。" class="headerlink" title="将对象的引用置于新类中。"></a>将对象的引用置于新类中。</h4><ol>
+<li>类中域为基本数据类型时能够自动被初始化为0，为对象引用时会被初始化为null。</li>
+<li>组合和继承都允许在新的类中放置子对象，组合是显示地这样做，而继承是隐式地做。<a id="more"></a></li>
+<li>组合技术通常用于想在新类中使用现有类的功能而非它的接口这种情形（private）。</li>
+<li>“is-a”（是一个）的关系是用继承来表示的，而“has-a”（有一个）的关系是用组合来表示的。</li>
+</ol>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><h4 id="在继承过程中需要先声明“新类与旧类相似”，通过extends实现，这样会自动得到基类中所有的域和方法。"><a href="#在继承过程中需要先声明“新类与旧类相似”，通过extends实现，这样会自动得到基类中所有的域和方法。" class="headerlink" title="在继承过程中需要先声明“新类与旧类相似”，通过extends实现，这样会自动得到基类中所有的域和方法。"></a>在继承过程中需要先声明“新类与旧类相似”，通过extends实现，这样会自动得到基类中所有的域和方法。</h4><ol>
+<li>当创建一个类时，总是在继承，因此，除非已明确指出要从其他类中继承，否则就是在隐式地从Java的标准根类Object进行继承。</li>
+<li>判断是否继承，就是要确定是否可以用”is-a”来描述类之间的关系，并使之具有实际意义。</li>
+<li>继承并不只是复制其接口，当创建一个导出类的对象时，该对象包含了一个基类的子对象。</li>
+<li>继承技术其最重要的方面是用来表现新类和基类之间的关系，这种关系可以用“新类是现有类的一种类型”，在这种特性下，“向上转型”的使用可以解决一些复杂问题，又安全。</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在面向对象编程中，生成和使用程序代码最有可能采用的方法就是直接将数据和方法包装进一个类中，并使用该类对象。也可以使用现有类开发新的类。在开始设计时，一般应优先使用组合，在没有明确其使用场景符合继承技术时，选择继承就要好好考虑，如果必须向上转型，则继承是必要的。</p>
 
       
     </div>
@@ -310,13 +317,13 @@ Quick">
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/03/09/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2016/02/19/复用类/">Java复用类</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
-        <p><span>发布时间:</span>2017-03-09, 11:12:51</p>
-        <p><span>最后更新:</span>2017-03-09, 11:12:51</p>
+        <p><span>发布时间:</span>2016-02-19, 11:28:02</p>
+        <p><span>最后更新:</span>2017-03-09, 11:28:52</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/03/09/hello-world/" title="Hello World">http://yoursite.com/2017/03/09/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/09/hello-world/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/02/19/复用类/" title="Java复用类">http://yoursite.com/2016/02/19/复用类/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/02/19/复用类/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -328,10 +335,16 @@ Quick">
 
     <nav id="article-nav">
         
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/02/26/多态与接口/">
+                    多态与接口
+                </a>
+            </div>
+        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/03/06/并发基础（一）/">
-                    并发基础（一）
+                <a href="/2016/02/10/2016学习规划/">
+                    2016学习规划
                 </a>
             </div>
         
@@ -343,7 +356,7 @@ Quick">
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java复用类"><span class="toc-number">1.</span> <span class="toc-text">Java复用类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#组合"><span class="toc-number">1.0.1.</span> <span class="toc-text">组合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#将对象的引用置于新类中。"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">将对象的引用置于新类中。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-number">1.0.2.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在继承过程中需要先声明“新类与旧类相似”，通过extends实现，这样会自动得到基类中所有的域和方法。"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">在继承过程中需要先声明“新类与旧类相似”，通过extends实现，这样会自动得到基类中所有的域和方法。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.0.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol>
         
     </div>
     <style>
@@ -379,7 +392,7 @@ Quick">
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Hello World　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Java复用类　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -399,13 +412,15 @@ Quick">
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2016/02/26/多态与接口/" title="上一篇: 多态与接口">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/03/06/并发基础（一）/" title="下一篇: 并发基础（一）">
+            <a href="/2016/02/10/2016学习规划/" title="下一篇: 2016学习规划">
                 <i class="fa fa-angle-right"></i>
             </a>
         

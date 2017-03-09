@@ -15,19 +15,16 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="并发编程Java是一种多线程语言，并提出了并发问题，对于某些问题，如果能够并行地执行程序中的多个部分，则会变成非常方便和有必要。当并行执行的任务彼此开始产生互相干涉时，实际的并发问题就会接踵而至，这可能会以一种微妙而偶然的方式发生，在实际情况下所编写的并发程序在给定适当条件的时候，将会工作失败，这些条件可能从来不会实际发生，或者发生得不频繁，以至于测试过程中没有发现。并发”具有可论证的确定性，当是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/03/09/hello-world/index.html">
+<meta property="og:title" content="并发基础（一）">
+<meta property="og:url" content="http://yoursite.com/2016/03/06/并发基础（一）/index.html">
 <meta property="og:site_name" content="个人博客 - 记录每一步脚印">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2017-03-09T03:12:51.629Z">
+<meta property="og:description" content="并发编程Java是一种多线程语言，并提出了并发问题，对于某些问题，如果能够并行地执行程序中的多个部分，则会变成非常方便和有必要。当并行执行的任务彼此开始产生互相干涉时，实际的并发问题就会接踵而至，这可能会以一种微妙而偶然的方式发生，在实际情况下所编写的并发程序在给定适当条件的时候，将会工作失败，这些条件可能从来不会实际发生，或者发生得不频繁，以至于测试过程中没有发现。并发”具有可论证的确定性，当是">
+<meta property="og:updated_time" content="2017-03-09T03:31:24.763Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="并发基础（一）">
+<meta name="twitter:description" content="并发编程Java是一种多线程语言，并提出了并发问题，对于某些问题，如果能够并行地执行程序中的多个部分，则会变成非常方便和有必要。当并行执行的任务彼此开始产生互相干涉时，实际的并发问题就会接踵而至，这可能会以一种微妙而偶然的方式发生，在实际情况下所编写的并发程序在给定适当条件的时候，将会工作失败，这些条件可能从来不会实际发生，或者发生得不频繁，以至于测试过程中没有发现。并发”具有可论证的确定性，当是">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +56,7 @@ Quick">
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hello World | 个人博客 - 记录每一步脚印</title>
+<title>并发基础（一） | 个人博客 - 记录每一步脚印</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -257,11 +254,11 @@ Quick">
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-并发基础（一）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/03/09/hello-world/" class="article-date">
-      <time datetime="2017-03-09T03:12:51.629Z" itemprop="datePublished">2017-03-09</time>
+      <a href="/2016/03/06/并发基础（一）/" class="article-date">
+      <time datetime="2016-03-06T03:30:54.000Z" itemprop="datePublished">2016-03-06</time>
 </a>
 
 
@@ -276,7 +273,7 @@ Quick">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      并发基础（一）
     </h1>
   
 
@@ -293,15 +290,27 @@ Quick">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h3 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h3><p>Java是一种多线程语言，并提出了并发问题，对于某些问题，如果能够并行地执行程序中的多个部分，则会变成非常方便和有必要。当并行执行的任务彼此开始产生互相干涉时，实际的并发问题就会接踵而至，这可能会以一种微妙而偶然的方式发生，在实际情况下所编写的并发程序在给定适当条件的时候，将会工作失败，这些条件可能从来不会实际发生，或者发生得不频繁，以至于测试过程中没有发现。并发”具有可论证的确定性，当是实际上具有不确定性”，如果我们视而不见就会遭其反噬。<br><a id="more"></a></p>
+<h4 id="并发的多面性"><a href="#并发的多面性" class="headerlink" title="并发的多面性"></a>并发的多面性</h4><p>用并发解决的问题大体上分为”速度”和”设计可管理性”两种。</p>
+<ol>
+<li>更快的执行</li>
+</ol>
+<p>并发通常是提高运行在单处理器上的程序性能，在单处理器上并发程序开销却比所有部分顺序执行要大，因此增加所谓的上下文切换的代价，使这个问题变得的不同的是阻塞。如果程序中某个任务因为该程序控制范围之外的某些条件（I/O）而导致不能继续执行，那么我们就说这个任务或线程阻塞了。一个任务阻塞时，程序中的其他任务还可以继续执行。并发的每一个任务都作为进程在自己的地址空间中执行，因此任务之间根本不可能互相干涉，它们之间没有任何彼此通信的需要，因为它们都是完全独立的。操作系统会处理确保文件正确复制的所有细节，不会有任何风险，你可以获得更快的程序。</p>
+<ol>
+<li><p>改进代码设计</p>
+<p>协作多线程，Java的线程机制是抢占式的，这表示调度机制会周期性的中断线程，将上下文切换到另一个线程，从而为每一个线程都提供时间片，使得每一个线程都会被分配到合理的时间去驱动它的任务。并发需要付出代价，包含复杂性代价，但是这些代价与在程序设计，资源负载均衡以及用户方便使用方面的改进相比，都显得微不足道。通常，线程使你能够创建更加松散耦合的设计，否则，你的代码中各个部分都必须显示的关注那些可以用线程来处理的任务。</p>
+</li>
+</ol>
+<h4 id="基本的线程机制"><a href="#基本的线程机制" class="headerlink" title="基本的线程机制"></a>基本的线程机制</h4><p>并发编程使我们可以将程序划分为多个分离的，独立运行的任务，通过使用多线程这些独立的任务中的每一个都将执行由执行线程来驱动。</p>
+<ol>
+<li>定义任务，线程可以驱动任务，因此需要一种描叙任务的方式，由Runnable接口来提供给，要定义任务，只需要实现Runnable接口并运行run()，使得该任务可以执行你的命令。</li>
+<li>任务的run()方法通常总会有某种形式的循环，使得任务一直运行下去直到不再需要，要切换线程可以使用静态方法Thread.yield()，在后面将会有如何安全地终止线程。</li>
+<li>Thread类，将Runnable对象转变为工作任务的传统方式是把它提交给一个Thread构造器如下： <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Thread t = new Thread(new DeamomFinal());</div><div class="line">       t.start();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>DeamomFinal是实现Runnable接口的类。<br>4.使用Executor，Executor（执行器）将为你管理Thread对象，从而简化了并发编程，Executor允许你管理异步任务的执行，而无须显示地管理线程的生命周期，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ExecutorService exec = Executors.newCachedThreadPool();</div><div class="line">       exec.execute(new DeamomFinal());</div><div class="line">       exec.shutdown();</div></pre></td></tr></table></figure>
+<p>5. </p>
 
       
     </div>
@@ -310,13 +319,13 @@ Quick">
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/03/09/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2016/03/06/并发基础（一）/">并发基础（一）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
-        <p><span>发布时间:</span>2017-03-09, 11:12:51</p>
-        <p><span>最后更新:</span>2017-03-09, 11:12:51</p>
+        <p><span>发布时间:</span>2016-03-06, 11:30:54</p>
+        <p><span>最后更新:</span>2017-03-09, 11:31:24</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/03/09/hello-world/" title="Hello World">http://yoursite.com/2017/03/09/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/09/hello-world/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/03/06/并发基础（一）/" title="并发基础（一）">http://yoursite.com/2016/03/06/并发基础（一）/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/03/06/并发基础（一）/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -328,10 +337,16 @@ Quick">
 
     <nav id="article-nav">
         
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/03/09/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/03/06/并发基础（一）/">
-                    并发基础（一）
+                <a href="/2016/02/26/多态与接口/">
+                    多态与接口
                 </a>
             </div>
         
@@ -343,7 +358,7 @@ Quick">
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#并发编程"><span class="toc-number">1.</span> <span class="toc-text">并发编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#并发的多面性"><span class="toc-number">1.1.</span> <span class="toc-text">并发的多面性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本的线程机制"><span class="toc-number">1.2.</span> <span class="toc-text">基本的线程机制</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -379,7 +394,7 @@ Quick">
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Hello World　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"并发基础（一）　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -399,13 +414,15 @@ Quick">
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/03/09/hello-world/" title="上一篇: Hello World">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/03/06/并发基础（一）/" title="下一篇: 并发基础（一）">
+            <a href="/2016/02/26/多态与接口/" title="下一篇: 多态与接口">
                 <i class="fa fa-angle-right"></i>
             </a>
         
