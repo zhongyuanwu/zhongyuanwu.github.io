@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Jim" />
+
+
+
+<meta name="description" content="Intent（意图）主要是解决Android应用的各项组件之间的通讯。Intent负责对应用中一次操作的动作、动作涉及数据、附加数据进行描述，Android则根据此Intent的描述，负责找到对应的组件，将 Intent传递给调用的组件，并完成组件的调用。因此，Intent在这里起着一个媒体中介的作用，专门提供组件互相调用的相关信息，实现调用者与被调用者之间的解耦。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intent中显示意图和隐式意图的用法">
+<meta property="og:url" content="http://yoursite.com/2016/07/08/Intent中显示意图和隐式意图的用法/index.html">
+<meta property="og:site_name" content="个人博客 - 记录每一步脚印">
+<meta property="og:description" content="Intent（意图）主要是解决Android应用的各项组件之间的通讯。Intent负责对应用中一次操作的动作、动作涉及数据、附加数据进行描述，Android则根据此Intent的描述，负责找到对应的组件，将 Intent传递给调用的组件，并完成组件的调用。因此，Intent在这里起着一个媒体中介的作用，专门提供组件互相调用的相关信息，实现调用者与被调用者之间的解耦。">
+<meta property="og:updated_time" content="2017-03-09T07:02:16.214Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Intent中显示意图和隐式意图的用法">
+<meta name="twitter:description" content="Intent（意图）主要是解决Android应用的各项组件之间的通讯。Intent负责对应用中一次操作的动作、动作涉及数据、附加数据进行描述，Android则根据此Intent的描述，负责找到对应的组件，将 Intent传递给调用的组件，并完成组件的调用。因此，Intent在这里起着一个媒体中介的作用，专门提供组件互相调用的相关信息，实现调用者与被调用者之间的解耦。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="个人博客 - 记录每一步脚印" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Intent中显示意图和隐式意图的用法 | 个人博客 - 记录每一步脚印</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/head.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Jim</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://melonlee.com/">李辉</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Android</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Jim</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/head.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Jim</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Intent中显示意图和隐式意图的用法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/08/Intent中显示意图和隐式意图的用法/" class="article-date">
+      <time datetime="2016-07-08T06:54:47.000Z" itemprop="datePublished">2016-07-08</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Intent中显示意图和隐式意图的用法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Intent（意图）主要是解决Android应用的各项组件之间的通讯。<br>Intent负责对应用中一次操作的动作、动作涉及数据、附加数据进行描述，Android则根据此Intent的描述，负责找到对应的组件，将 Intent传递给调用的组件，并完成组件的调用。<br>因此，Intent在这里起着一个媒体中介的作用，专门提供组件互相调用的相关信息，实现调用者与被调用者之间的解耦。<br><a id="more"></a><br>例如，在一个联系人维护的应用中，当我们在一个联系人列表屏幕(假设对应的Activity为listActivity)上，点击某个联系人后，希望能够跳出此联系人的详细信息屏幕(假设对应的Activity为detailActivity)<br>为了实现这个目的，listActivity需要构造一个 Intent，这个Intent用于告诉系统，我们要做“查看”动作，此动作对应的查看对象是“某联系人”，然后调用startActivity (Intent intent)，将构造的Intent传入，系统会根据此Intent中的描述，到ManiFest中找到满足此Intent要求的Activity，系统会调用找到的 Activity，即为detailActivity，最终传入Intent，detailActivity则会根据此Intent中的描述，执行相应的操作。<br>对于intent主要的分类主要包括隐式意图和显式意图。显式意图通常主要是启动本应用中的Activity之间的数据，而隐式意图则常见于启动系统中的某些特定的动作，比如打电话，或者是跨应用的Activity启动。<br>通常来说：<br>显式意图：调用Intent.setComponent()或Intent.setClass()方法明确指定了组件名的Intent为显式意图，显式意图明确指定了Intent应该传递给哪个组件。<br>隐式意图：没有明确指定组件名的Intent为隐式意图。 Android系统会根据隐式意图中设置的动作(action)、类别(category)、数据（URI和数据类型）找到最合适的组件来处理这个意图。<br>显示意图非常常用也非常简单一般用于应用程序内之间Activity的相互调用转换，就不多说了，这里我介绍一下隐式意图：<br>简单概括就是： 意图包括：Action（动作），Category（附加信息），Data（数据，具体内容），Tpye(类型)等等，举个例子，说白了意图就是启动一个组件的的完整的动作信息，就像打人，打就是Action动作，人就是Data内容，而Type就是类型，打什么人呢？打坏人，type就是坏指的类型，只有这些信息全了才能执行一个完整的意图，当然还有一些信息，比如scheme就是URI类型的数据的前缀，就像这个例子当中的sms:，还有host主机名，path路径等。<br>这里我给大家举一个调用系统短信的例子，使用隐式意图启动系统短信，并给10086发送信息的例子。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> /** </div><div class="line">      * 隐式意图的方法启动系统短信 </div><div class="line">      *  </div><div class="line">      * 简单概括就是： 意图包括：Action（动作），Category（附加信息），Data（数据，具体内容），Tpye(类型)等等，举个例子， </div><div class="line">      * 说白了意图就是启动一个组件的的完整的动作信息 </div><div class="line">      * ，就像打人，打就是Action动作，人就是Data内容，而Type就是类型，打什么人呢？打坏人，type就是坏指的类型 </div><div class="line">      * ，只有这些信息全了才能执行一个完整的意图 </div><div class="line">      * ，当然还有一些信息，比如scheme就是URI类型的数据的前缀，就像这个例子当中的sms:，还有host主机名，path路径等 </div><div class="line">      *  </div><div class="line">      * @param view </div><div class="line">      */  </div><div class="line">     public void startOne(View view) &#123;  </div><div class="line">         Intent intent = new Intent();  </div><div class="line">         intent.setAction(&quot;android.intent.action.SENDTO&quot;);// 发送信息的动作  </div><div class="line">         intent.addCategory(&quot;android.intent.category.DEFAULT&quot;);// 附加信息  </div><div class="line">         intent.setData(Uri.parse(&quot;sms:10086&quot;));// 具体的数据，发送给10086  </div><div class="line">         startActivity(intent);  </div><div class="line">     &#125;  </div><div class="line">上边的这个例子是调用系统的东西，下边我们来看看自定义的隐式意图是怎么调用的。</div><div class="line">首先是先在清单文件中进行注册，代码如下：</div><div class="line"></div><div class="line"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  </div><div class="line"> &lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;  </div><div class="line">     package=&quot;net.loonggg.intent&quot;  </div><div class="line">     android:versionCode=&quot;1&quot;  </div><div class="line">     android:versionName=&quot;1.0&quot; &gt;  </div><div class="line">   </div><div class="line">     &lt;uses-sdk  </div><div class="line">         android:minSdkVersion=&quot;8&quot;  </div><div class="line">         android:targetSdkVersion=&quot;17&quot; /&gt;  </div><div class="line">   </div><div class="line">     &lt;application  </div><div class="line">         android:allowBackup=&quot;true&quot;  </div><div class="line">         android:icon=&quot;@drawable/ic_launcher&quot;  </div><div class="line">         android:label=&quot;@string/app_name&quot;  </div><div class="line">         android:theme=&quot;@style/AppTheme&quot; &gt;  </div><div class="line">         &lt;activity  </div><div class="line">             android:name=&quot;net.loonggg.intent.MainActivity&quot;  </div><div class="line">             android:label=&quot;@string/app_name&quot; &gt;  </div><div class="line">             &lt;intent-filter&gt;  </div><div class="line">                 &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;  </div><div class="line">   </div><div class="line">                 &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;  </div><div class="line">             &lt;/intent-filter&gt;  </div><div class="line">         &lt;/activity&gt;  </div><div class="line">         &lt;activity android:name=&quot;net.loonggg.intent.SecondActivity&quot; &gt;  </div><div class="line">             &lt;intent-filter&gt;  </div><div class="line">   </div><div class="line">                 &lt;!-- 自定义的动作 --&gt;  </div><div class="line">                 &lt;action android:name=&quot;net.loonggg.xxx&quot; /&gt;  </div><div class="line">                 &lt;!-- 自定义的scheme和host --&gt;  </div><div class="line">                 &lt;data  </div><div class="line">                     android:host=&quot;www.baidu.com&quot;  </div><div class="line">                     android:path=&quot;/person&quot;  </div><div class="line">                     android:scheme=&quot;loonggg&quot; /&gt;  </div><div class="line">                 &lt;!-- 自定义的类型 --&gt;  </div><div class="line">                 &lt;data android:mimeType=&quot;person/people&quot; /&gt;  </div><div class="line">                 &lt;!-- 附加信息 --&gt;  </div><div class="line">                 &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;  </div><div class="line">             &lt;/intent-filter&gt;  </div><div class="line">         &lt;/activity&gt;  </div><div class="line">     &lt;/application&gt;  </div><div class="line">   </div><div class="line"> &lt;/manifest&gt;  </div><div class="line">第二个Activity里的东西就是我们自定义设置的，就是下边的这段代码：</div><div class="line"></div><div class="line"> &lt;activity android:name=&quot;net.loonggg.intent.SecondActivity&quot; &gt;  </div><div class="line">            &lt;intent-filter&gt;  </div><div class="line">   </div><div class="line">                &lt;!-- 自定义的动作 --&gt;  </div><div class="line">                &lt;action android:name=&quot;net.loonggg.xxx&quot; /&gt;  </div><div class="line">                &lt;!-- 自定义的scheme和host --&gt;  </div><div class="line">                &lt;data  </div><div class="line">                    android:host=&quot;www.baidu.com&quot;  </div><div class="line">                    android:path=&quot;/person&quot;  </div><div class="line">                    android:scheme=&quot;loonggg&quot; /&gt;  </div><div class="line">                &lt;!-- 自定义的类型 --&gt;  </div><div class="line">                &lt;data android:mimeType=&quot;person/people&quot; /&gt;  </div><div class="line">                &lt;!-- 附加信息 --&gt;  </div><div class="line">                &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;  </div><div class="line">            &lt;/intent-filter&gt;  </div><div class="line">        &lt;/activity&gt;  </div><div class="line">那在代码中怎么调用自定义的呢？其实跟调用系统短信一样，只不过调用系统短信里的那些动作和数据，系统已经给我们配置好了，我们直接用就行，而自定义的就是我们自己写的，调用方法和系统其实是一样的。方法如下：</div><div class="line"></div><div class="line"> /** </div><div class="line">     * 通过自定义的隐式意图启动 </div><div class="line">     *  </div><div class="line">     * @param view </div><div class="line">     */  </div><div class="line">    public void startTwo(View view) &#123;  </div><div class="line">        Intent intent = new Intent();  </div><div class="line">        intent.setAction(&quot;net.loonggg.xxx&quot;);  </div><div class="line">        intent.addCategory(&quot;android.intent.category.DEFAULT&quot;);  </div><div class="line">        intent.setDataAndType(Uri.parse(&quot;loonggg://www.baidu.com/person&quot;),  </div><div class="line">                &quot;person/people&quot;);  </div><div class="line">        startActivity(intent);  </div><div class="line">    &#125;  </div><div class="line">特别注意的一点是：intent.setData(data)和intent.setType(type)注意这两个方法会互相清除，意思就是：如果先设置setData(data)后设置setType(type)，那么后设置的setType(type)会把前面setData(data)设置的内容清除掉，而且会报错，反之一样，所以如果既要设置类型与数据，那么使用setDataAndType(data,type)这个方法。</div><div class="line">转载注明出处：http://blog.csdn.net/loongggdroid/article/details/17887975</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/07/08/Intent中显示意图和隐式意图的用法/">Intent中显示意图和隐式意图的用法</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
+        <p><span>发布时间:</span>2016-07-08, 14:54:47</p>
+        <p><span>最后更新:</span>2017-03-09, 15:02:16</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/08/Intent中显示意图和隐式意图的用法/" title="Intent中显示意图和隐式意图的用法">http://yoursite.com/2016/07/08/Intent中显示意图和隐式意图的用法/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/07/08/Intent中显示意图和隐式意图的用法/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/06/25/深入理解-intent/">
+                    深入理解 intent
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Intent中显示意图和隐式意图的用法　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/06/25/深入理解-intent/" title="下一篇: 深入理解 intent">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/08/Intent中显示意图和隐式意图的用法/">Intent中显示意图和隐式意图的用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/深入理解-intent/">深入理解 intent</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/图片旋转/">图片旋转</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/09/属性动画/">属性动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/常见的混淆配置项/">常见的混淆配置项</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/高内聚、低耦合/">高内聚、低耦合（设计模式所解决 要实现的目标）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/CoordinatorLayout/">CoordinatorLayout+ToolBar+AppBarLayout(向上滚动隐藏指定的View如toolbar)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/Dagger2-依赖注解/">Dagger2(依赖注解)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/RxAndroid之Rxlifecycle使用/">RxAndroid之Rxlifecycle使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Fragment的懒加载/">Fragment的懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/嵌套滑动机制原理-NestedScroll/">嵌套滑动机制原理(NestedScroll)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/线程更新UI/">线程更新UI</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/RxJava集合/">RxJava系列专题（Android方向）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/RecyclerView（二）之Apater封装/">RecyclerView（二）之Apater封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/RecyclerView基本使用和概念/">RecyclerView基本使用和概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/并发基础（一）/">并发基础（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/多态与接口/">多态与接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/复用类/">Java复用类</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/10/2016学习规划/">2016学习规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/06/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Jim
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

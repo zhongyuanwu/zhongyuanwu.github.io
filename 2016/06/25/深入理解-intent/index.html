@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Jim" />
+
+
+
+<meta name="description" content="一. 使用Internt 连接activity1.创建 intent用下面的构造方法Intent.Intent(Context packgeContext ,Class &amp;lt;?&amp;gt; cls );或者先构造 一个未指向 的intent，再用下面方法Intent.getClass(Context packageContext,Class &amp;lt;?&amp;gt; cls);">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解 intent">
+<meta property="og:url" content="http://yoursite.com/2016/06/25/深入理解-intent/index.html">
+<meta property="og:site_name" content="个人博客 - 记录每一步脚印">
+<meta property="og:description" content="一. 使用Internt 连接activity1.创建 intent用下面的构造方法Intent.Intent(Context packgeContext ,Class &amp;lt;?&amp;gt; cls );或者先构造 一个未指向 的intent，再用下面方法Intent.getClass(Context packageContext,Class &amp;lt;?&amp;gt; cls);">
+<meta property="og:updated_time" content="2017-03-09T06:55:29.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解 intent">
+<meta name="twitter:description" content="一. 使用Internt 连接activity1.创建 intent用下面的构造方法Intent.Intent(Context packgeContext ,Class &amp;lt;?&amp;gt; cls );或者先构造 一个未指向 的intent，再用下面方法Intent.getClass(Context packageContext,Class &amp;lt;?&amp;gt; cls);">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="个人博客 - 记录每一步脚印" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>深入理解 intent | 个人博客 - 记录每一步脚印</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/head.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Jim</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://melonlee.com/">李辉</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Android</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Jim</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/head.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Jim</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-深入理解-intent" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/25/深入理解-intent/" class="article-date">
+      <time datetime="2016-06-25T06:50:07.000Z" itemprop="datePublished">2016-06-25</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深入理解 intent
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>一. 使用Internt 连接activity<br>1.创建 intent<br>用下面的构造方法<br>Intent.Intent(Context packgeContext ,Class &lt;?&gt; cls );<br>或者先构造 一个未指向 的intent，再用下面方法<br>Intent.getClass(Context packageContext,Class &lt;?&gt; cls);<br><a id="more"></a><br>2.调用 Intent<br>Activity.startActivity( Intent intent);<br>如果 想下一个Activity时返回原来 的activity ，则<br>Activity.startActivityForResult (Intent intent ,int requestCode );</p>
+<p>note :应用中的activity都要在 manifest文件中注册。</p>
+<p>二. 使用activity传递数据 </p>
+<ol>
+<li>在第一个activity中存入 数据 ，<br>Intent.putExra( String name ,String value );<br>name value 类似于键 值对应的，如HashMap ，name =key。不过这里它们的类型是Bundle（专门为activity面设计 的，本质 是HashMap的再封装。<br>2.在目标activity中取出intent中的值<br>先用getIntent();得到intent对象。再<br>Intent.getExtras() ;<br>得到的是一个Bundle对象。<br>Bundle.getString( String key )<br>从而得到里面的key对应的 数据 。</li>
+</ol>
+<p>三。如果要返回<br>steps:</p>
+<ol>
+<li>Activity.startActivityForResult( Intent intent ,int requestCode )<br>第二个参数 是请求码，用来标识 这次请求</li>
+<li>在onActivityResult 中，我们对返回的结果 进行处理。<br>protected void onActivityResult (int requesCode, int resultCode ,Intent data){<br>super.onActivityResult(…);<br>}<br>参数1：请求码，标识本次结果对应那个请求。<br>参数2：结果码，两种  。<br>RESULT_OK =-1:本次操作成功，则返回这个<br>RESUKT_CANCELLED = 0：操作取消，返回这个值 。<br>还有一个是 1  。自己定义 不要与之重复。<br>结果码除了可以用来区分 操作是否成功，还可以 区分 是由那个activity 返回的 。<br>参数3 ：可以用  Intent.getExtras() 得到返回的值。<br>3.在目标activity中new 一个 Intent 对象，不用指定要跳转的activity<br>再使用 Intent.putExtras(Bundle bundle) 将数据与intent 绑定。<br>4.将intent 传入到结果 中，用<br>Activity.setResult( int requestCode, Intent data );<br>5 .调用 finish()。<br>结束本activity ,系统 会自动 调用 之前 的onActivityResult ().<br>onActivityResult(int requestCode, int resultCode, Intent data)中：</li>
+</ol>
+<p>requestCode–&gt;鉴别是谁打开的。</p>
+<p>resultCode—&gt;鉴别谁返回（关闭）的。</p>
+<p><em>startActivityForResult(intent, requestCode)首先文档告诉我们，只有到activity结束的时候，才会返回消息。
+</em>startActivityForResult(intent, requestCode)中的俩个参数 ，第一个不用多说。第二个requestCode，一般情况下，我们只需要保证<br>requestCode&gt;-1即可，这样它都能收到result。但是如果在A activity中，能够跳转到多个activiity，并且要接受到这多个activity中的信息的时候，我们就要注意了，这时候，requestCode就起大作用了，当你startActiviityForResult()的时候， 给每一个不同的activity一个独立的requestcode，那么在你接受到result的时候就可以通过这个参数来判断，结果是那个acitivity返回来的了。<br>*那么如果是，A activity跳转到B activity的时候，b有可能返回N种结果，而你在A中需要根据这N中不通的返回结果做出N种不通的处理的时候那该怎么办呢？当然，你可以用data，中添加数据了识别，但是android提供了更好的一种方式，那就是<br>onActivityResult(requestCode, resultCode, data)中的resultcode,你可以setresult()的时候，根据不通的结果返回不同的resultcode,这样就能区分开来。</p>
+<p>三。例子<br>    我们完成下面的例子，主要用到的知识点有：<br>（1）startActivityForResult ()<br>(2) requestCode 和 resultCode 的不同<br>（3） Edittext中怎么加入提示。要用到 android:hint 标签<br>1 。首先是界面文件，这里只写要注意的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;EditText</div><div class="line">        android:id=&quot;@+id/editText&quot;</div><div class="line">        android:layout_width=&quot;wrap_content&quot;</div><div class="line">        android:layout_height=&quot;wrap_content&quot;</div><div class="line">        android:layout_alignParentLeft=&quot;true&quot;</div><div class="line">        android:layout_marginTop=&quot;19dp&quot;</div><div class="line">        android:hint=&quot;请输入姓名&quot;</div><div class="line">        android:focusable=&quot;true&quot;  </div><div class="line">      android:focusableInTouchMode=&quot;true&quot;</div><div class="line">        android:ems=&quot;10&quot; &gt;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>java文件<br> 首先是整体部分的关键部分<br>先定义 了<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line">static final int REQUEST_CODE1=1;    //requestCode--&gt;鉴别是谁打开的。</div><div class="line">    static final int REQUEST_CODE2=2;</div><div class="line">    static final int RESULT1=2;   //activity 1 中返回两结果 </div><div class="line">    static final int RESULT2=3;</div><div class="line"></div><div class="line">    btn1.setOnClickListener(new OnClickListener()&#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View arg0) &#123;</div><div class="line">                // TODO Auto-generated method stub</div><div class="line">                Intent i1= new Intent (getBaseContext(),Act1.class);</div><div class="line">                startActivityForResult(i1 ,REQUEST_CODE1);   //由 btn1 打开的</div><div class="line">     </div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">         </div><div class="line">        btn2.setOnClickListener(new OnClickListener()&#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View arg0) &#123;</div><div class="line">                // TODO Auto-generated method stub</div><div class="line">                Intent i2= new Intent(getBaseContext(), Act2.class);</div><div class="line">                startActivityForResult (i2 ,REQUEST_CODE2);   //由   btn 2 打开 的</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    @Override</div><div class="line">    protected void onActivityResult(int requestCode, int resultCode, Intent data) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        switch(requestCode)&#123;</div><div class="line">        case REQUEST_CODE1:   //分辨是那个请求的结果 </div><div class="line">            if(resultCode==RESULT1)&#123;</div><div class="line">                Bundle bundle=data.getExtras();</div><div class="line">                String request1= bundle.getString(&quot;activity1&quot;);</div><div class="line">                tv1.setText(&quot;request1 result1  :&quot;+request1);</div><div class="line">            &#125;else if (resultCode==RESULT2)&#123;</div><div class="line">                Bundle bundle=data.getExtras();</div><div class="line">                String request1= bundle.getString(&quot;activity1&quot;);</div><div class="line">                tv1.setText(&quot;request1 result2  :&quot;+request1);</div><div class="line">            &#125;</div><div class="line">        case REQUEST_CODE2:</div><div class="line">            if(resultCode==RESULT_OK)&#123;    //此处是否要用break;</div><div class="line">                Bundle bundle2 = data.getExtras();</div><div class="line">                String request2 =bundle2.getString(&quot;activity2&quot;);</div><div class="line">                tv2.setText(&quot;request2 :&quot;+request2);</div><div class="line">            &#125;</div><div class="line">            default: break;</div><div class="line">        &#125;</div><div class="line">             </div><div class="line">        super.onActivityResult(requestCode, resultCode, data);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">然后是activity 1  的关键部分</div><div class="line">定义 了</div><div class="line"></div><div class="line">static final int RESULT1=2;</div><div class="line">    static final int RESULT2=3；</div><div class="line"></div><div class="line">btnR2.setOnClickListener(new OnClickListener()&#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                // TODO Auto-generated method stub</div><div class="line">                String resultActivity1= et2.getText().toString();</div><div class="line">                Intent irequest1= new Intent ();</div><div class="line">                Bundle bundle = new Bundle();</div><div class="line">                bundle.putString(&quot;activity1&quot;, resultActivity1);</div><div class="line">                irequest1.putExtras(bundle);</div><div class="line">                setResult(RESULT2,irequest1);</div><div class="line">                finish();</div><div class="line">            &#125;  </div><div class="line">        &#125;);</div><div class="line">         </div><div class="line">        btnR1.setOnClickListener(new OnClickListener()&#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                // TODO Auto-generated method stub</div><div class="line">                String resultActivity1= et1.getText().toString();</div><div class="line">                Intent irequest1 = new Intent ();</div><div class="line">                Bundle bundle = new Bundle();</div><div class="line">                bundle.putString(&quot;activity1&quot;, resultActivity1);</div><div class="line">                irequest1.putExtras(bundle);</div><div class="line">                setResult(RESULT1, irequest1);</div><div class="line">                finish();</div><div class="line">            &#125;  </div><div class="line">        &#125;);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">activity 2 的主要部分</div><div class="line"></div><div class="line">btnR.setOnClickListener(new OnClickListener()&#123;</div><div class="line">        @Override</div><div class="line">        public void onClick(View v) &#123;</div><div class="line">            // TODO Auto-generated method stub</div><div class="line">            String resultActivity2 = et.getText().toString();</div><div class="line">            Intent irequest2= new Intent ();</div><div class="line">            Bundle bundle = new Bundle();</div><div class="line">            bundle.putString(&quot;activity2&quot;, resultActivity2);</div><div class="line">            irequest2.putExtras(bundle);</div><div class="line">            setResult(RESULT_OK, irequest2);</div><div class="line">            finish();</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">     </div><div class="line">    et.setOnFocusChangeListener(new OnFocusChangeListener()&#123;</div><div class="line">        @Override</div><div class="line">        public void onFocusChange(View v, boolean hasFocus) &#123;</div><div class="line">            // TODO Auto-generated method stub</div><div class="line">            String hint ;</div><div class="line">            if (hasFocus)&#123;</div><div class="line">                hint = et.getHint().toString();</div><div class="line">                et.setTag(hint);</div><div class="line">                et.setHint(&quot;&quot;);</div><div class="line">            &#125;else &#123;</div><div class="line">                hint = et.getTag().toString();</div><div class="line">                et.setHint(hint);</div><div class="line">            &#125;</div><div class="line">        &#125;  </div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/06/25/深入理解-intent/">深入理解 intent</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
+        <p><span>发布时间:</span>2016-06-25, 14:50:07</p>
+        <p><span>最后更新:</span>2017-03-09, 14:55:29</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/25/深入理解-intent/" title="深入理解 intent">http://yoursite.com/2016/06/25/深入理解-intent/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/06/25/深入理解-intent/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/07/08/Intent中显示意图和隐式意图的用法/">
+                    Intent中显示意图和隐式意图的用法
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/06/19/图片旋转/">
+                    图片旋转
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"深入理解 intent　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/07/08/Intent中显示意图和隐式意图的用法/" title="上一篇: Intent中显示意图和隐式意图的用法">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/06/19/图片旋转/" title="下一篇: 图片旋转">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/08/Intent中显示意图和隐式意图的用法/">Intent中显示意图和隐式意图的用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/深入理解-intent/">深入理解 intent</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/图片旋转/">图片旋转</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/09/属性动画/">属性动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/常见的混淆配置项/">常见的混淆配置项</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/高内聚、低耦合/">高内聚、低耦合（设计模式所解决 要实现的目标）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/CoordinatorLayout/">CoordinatorLayout+ToolBar+AppBarLayout(向上滚动隐藏指定的View如toolbar)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/Dagger2-依赖注解/">Dagger2(依赖注解)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/RxAndroid之Rxlifecycle使用/">RxAndroid之Rxlifecycle使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Fragment的懒加载/">Fragment的懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/嵌套滑动机制原理-NestedScroll/">嵌套滑动机制原理(NestedScroll)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/线程更新UI/">线程更新UI</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/RxJava集合/">RxJava系列专题（Android方向）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/RecyclerView（二）之Apater封装/">RecyclerView（二）之Apater封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/RecyclerView基本使用和概念/">RecyclerView基本使用和概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/并发基础（一）/">并发基础（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/多态与接口/">多态与接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/复用类/">Java复用类</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/10/2016学习规划/">2016学习规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/06/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Jim
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
