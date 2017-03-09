@@ -14,16 +14,17 @@
 <meta name="author" content="Jim" />
 
 
-    
-    
 
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="个人博客 - 记录每一步脚印">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta name="description" content="Fragment里的setUserVisibleHin   该方法用于告诉系统，这个Fragment的UI是否是可见的。所以我们只需要继承Fragment并重写该方法，即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fragment的懒加载">
+<meta property="og:url" content="http://yoursite.com/2016/04/19/Fragment的懒加载/index.html">
 <meta property="og:site_name" content="个人博客 - 记录每一步脚印">
+<meta property="og:description" content="Fragment里的setUserVisibleHin   该方法用于告诉系统，这个Fragment的UI是否是可见的。所以我们只需要继承Fragment并重写该方法，即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。">
+<meta property="og:updated_time" content="2017-03-09T04:28:36.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="个人博客 - 记录每一步脚印">
+<meta name="twitter:title" content="Fragment的懒加载">
+<meta name="twitter:description" content="Fragment里的setUserVisibleHin   该方法用于告诉系统，这个Fragment的UI是否是可见的。所以我们只需要继承Fragment并重写该方法，即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -51,13 +52,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>个人博客 - 记录每一步脚印</title>
+<title>Fragment的懒加载 | 个人博客 - 记录每一步脚印</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,8 +65,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -255,13 +254,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-复用类" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Fragment的懒加载" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/19/复用类/" class="article-date">
-      <time datetime="2016-02-19T03:28:02.000Z" itemprop="datePublished">2016-02-19</time>
+      <a href="/2016/04/19/Fragment的懒加载/" class="article-date">
+      <time datetime="2016-04-19T04:25:47.000Z" itemprop="datePublished">2016-04-19</time>
 </a>
 
 
@@ -275,242 +272,155 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/19/复用类/">Java复用类</a>
+    <h1 class="article-title" itemprop="name">
+      Fragment的懒加载
     </h1>
   
 
       </header>
       
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="Java复用类"><a href="#Java复用类" class="headerlink" title="Java复用类"></a>Java复用类</h1><h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><h4 id="将对象的引用置于新类中。"><a href="#将对象的引用置于新类中。" class="headerlink" title="将对象的引用置于新类中。"></a>将对象的引用置于新类中。</h4><ol>
-<li>类中域为基本数据类型时能够自动被初始化为0，为对象引用时会被初始化为null。</li>
-<li>组合和继承都允许在新的类中放置子对象，组合是显示地这样做，而继承是隐式地做。
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
+      <div class="article-info article-info-post">
+        
 
-      
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
+        <div class="clearfix"></div>
+      </div>
       
-        <p class="article-more-link">
-          <a href="/2016/02/19/复用类/#more">more >></a>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Fragment里的setUserVisibleHin   该方法用于告诉系统，这个Fragment的UI是否是可见的。所以我们只需要继承Fragment并重写该方法，即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public abstract class LazyFragment extends Fragment &#123;  </div><div class="line">    protected boolean isVisible;  </div><div class="line">    /** </div><div class="line">     * 在这里实现Fragment数据的缓加载. </div><div class="line">     * @param isVisibleToUser </div><div class="line">     */  </div><div class="line">    @Override  </div><div class="line">    public void setUserVisibleHint(boolean isVisibleToUser) &#123;  </div><div class="line">        super.setUserVisibleHint(isVisibleToUser);  </div><div class="line">        if(getUserVisibleHint()) &#123;  </div><div class="line">            isVisible = true;  </div><div class="line">            onVisible();  </div><div class="line">        &#125; else &#123;  </div><div class="line">            isVisible = false;  </div><div class="line">            onInvisible();  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    protected void onVisible()&#123;  </div><div class="line">        lazyLoad();  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    protected abstract void lazyLoad();  </div><div class="line">  </div><div class="line">    protected void onInvisible()&#123;&#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在上面的类当中，我们增加了一个标志位isPrepared，用于标志是否初始化完成。然后在我们所需要的初始化操作完成之后调用，如上面的例子当中，在初始化view之后，设置 isPrepared为true，同时调用lazyLoad()方法。而在lazyLoad()当中，判断isPrepared和isVisible只要有一个不为true就不往下执行。也就是仅当初始化完成，并且可见的时候才继续加载，这样的避免了未初始化完成就使用而带来的问题。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/04/19/Fragment的懒加载/">Fragment的懒加载</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Jim</a></p>
+        <p><span>Created:</span>2016-04-19, 12:25:47</p>
+        <p><span>Updated:</span>2017-03-09, 12:28:36</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/04/19/Fragment的懒加载/" title="Fragment的懒加载">http://yoursite.com/2016/04/19/Fragment的懒加载/</a>
+            <span class="copy-path" data-clipboard-text="From http://yoursite.com/2016/04/19/Fragment的懒加载/　　By Jim" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016学习规划" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/10/2016学习规划/" class="article-date">
-      <time datetime="2016-02-10T02:25:50.000Z" itemprop="datePublished">2016-02-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/10/2016学习规划/">2016学习规划</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="2016学习规划"><a href="#2016学习规划" class="headerlink" title="2016学习规划"></a>2016学习规划</h1><ol>
-<li>重温Java基础，巩固扫盲，通读《Java编程思想》并记录笔记，编写博客（2-7）</li>
-<li>持续关注Android新动态，储备新技术（整年）</li>
-<li>关于React-native的继续学习与关注（下边年）</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-sdfa" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/09/sdfa/" class="article-date">
-      <time datetime="2016-02-09T03:22:43.000Z" itemprop="datePublished">2016-02-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> 环境配置</p>
-<ul>
-<li>1 安装Node</li>
-<li>2 安装Git
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/02/09/sdfa/#more">more >></a>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/06/hello-world/" class="article-date">
-      <time datetime="2016-02-06T03:30:54.000Z" itemprop="datePublished">2016-02-06</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/06/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/04/29/RxAndroid之Rxlifecycle使用/">
+                    RxAndroid之Rxlifecycle使用
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/04/02/嵌套滑动机制原理-NestedScroll/">
+                    嵌套滑动机制原理(NestedScroll)
+                </a>
+            </div>
+        
     </nav>
+
   
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Fragment的懒加载　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/04/29/RxAndroid之Rxlifecycle使用/" title="Pre: RxAndroid之Rxlifecycle使用">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/04/02/嵌套滑动机制原理-NestedScroll/" title="Next: 嵌套滑动机制原理(NestedScroll)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/Dagger2-依赖注解/">Dagger2(依赖注解)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/RxAndroid之Rxlifecycle使用/">RxAndroid之Rxlifecycle使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Fragment的懒加载/">Fragment的懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/嵌套滑动机制原理-NestedScroll/">嵌套滑动机制原理(NestedScroll)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/线程更新UI/">线程更新UI</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/RxJava集合/">RxJava系列专题（Android方向）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/RecyclerView（二）之Apater封装/">RecyclerView（二）之Apater封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/RecyclerView基本使用和概念/">RecyclerView基本使用和概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/并发基础（一）/">并发基础（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/多态与接口/">多态与接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/复用类/">Java复用类</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/10/2016学习规划/">2016学习规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/06/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

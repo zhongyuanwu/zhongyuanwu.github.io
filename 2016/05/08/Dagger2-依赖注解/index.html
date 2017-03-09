@@ -14,16 +14,19 @@
 <meta name="author" content="Jim" />
 
 
-    
-    
 
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="个人博客 - 记录每一步脚印">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta name="description" content="Dagger ：为了不在需要依赖的类中通过new来创建依赖而是通过方法提供参数注入进来，这样我们的需要依赖的类和提供依赖的类的实现方法分隔开了，（解耦）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dagger2(依赖注解)">
+<meta property="og:url" content="http://yoursite.com/2016/05/08/Dagger2-依赖注解/index.html">
 <meta property="og:site_name" content="个人博客 - 记录每一步脚印">
+<meta property="og:description" content="Dagger ：为了不在需要依赖的类中通过new来创建依赖而是通过方法提供参数注入进来，这样我们的需要依赖的类和提供依赖的类的实现方法分隔开了，（解耦）">
+<meta property="og:image" content="http://yoursite.com/assets/img/Image.png">
+<meta property="og:updated_time" content="2017-03-09T04:40:59.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="个人博客 - 记录每一步脚印">
+<meta name="twitter:title" content="Dagger2(依赖注解)">
+<meta name="twitter:description" content="Dagger ：为了不在需要依赖的类中通过new来创建依赖而是通过方法提供参数注入进来，这样我们的需要依赖的类和提供依赖的类的实现方法分隔开了，（解耦）">
+<meta name="twitter:image" content="http://yoursite.com/assets/img/Image.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -51,13 +54,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>个人博客 - 记录每一步脚印</title>
+<title>Dagger2(依赖注解) | 个人博客 - 记录每一步脚印</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,8 +67,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -255,13 +256,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-复用类" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Dagger2-依赖注解" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/19/复用类/" class="article-date">
-      <time datetime="2016-02-19T03:28:02.000Z" itemprop="datePublished">2016-02-19</time>
+      <a href="/2016/05/08/Dagger2-依赖注解/" class="article-date">
+      <time datetime="2016-05-08T04:37:06.000Z" itemprop="datePublished">2016-05-08</time>
 </a>
 
 
@@ -275,228 +274,126 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/19/复用类/">Java复用类</a>
+    <h1 class="article-title" itemprop="name">
+      Dagger2(依赖注解)
     </h1>
   
 
       </header>
       
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="Java复用类"><a href="#Java复用类" class="headerlink" title="Java复用类"></a>Java复用类</h1><h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><h4 id="将对象的引用置于新类中。"><a href="#将对象的引用置于新类中。" class="headerlink" title="将对象的引用置于新类中。"></a>将对象的引用置于新类中。</h4><ol>
-<li>类中域为基本数据类型时能够自动被初始化为0，为对象引用时会被初始化为null。</li>
-<li>组合和继承都允许在新的类中放置子对象，组合是显示地这样做，而继承是隐式地做。
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
+      <div class="article-info article-info-post">
+        
 
-      
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2016/02/19/复用类/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016学习规划" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/10/2016学习规划/" class="article-date">
-      <time datetime="2016-02-10T02:25:50.000Z" itemprop="datePublished">2016-02-10</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/10/2016学习规划/">2016学习规划</a>
-    </h1>
-  
-
-      </header>
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="2016学习规划"><a href="#2016学习规划" class="headerlink" title="2016学习规划"></a>2016学习规划</h1><ol>
-<li>重温Java基础，巩固扫盲，通读《Java编程思想》并记录笔记，编写博客（2-7）</li>
-<li>持续关注Android新动态，储备新技术（整年）</li>
-<li>关于React-native的继续学习与关注（下边年）</li>
+        <p>Dagger ：为了不在需要依赖的类中通过new来创建依赖而是通过方法提供参数注入进来，这样我们的需要依赖的类和提供依赖的类的实现方法分隔开了，（解耦）<br><a id="more"></a><br>四种基础的注解，他们分别是：</p>
+<ol>
+<li>@Inject Inject主要有两个作用，一个是使用在构造函数上，通过标记构造函数让Dagger2来使用（Dagger2通过Inject标记可以在需要这个类实例的时候来找到这个构造函数并把相关实例new出来）从而提供依赖，另一个作用就是标记在需要依赖的变量让Dagger2为其提供依赖。</li>
 </ol>
+<ol>
+<li>@Provide 用Provide来标注一个方法，该方法可以在需要提供依赖时被调用，从而把预先提供好的对象当做依赖给标注了@Injection的变量赋值。provide主要用于标注Module里的方法</li>
+</ol>
+<ol>
+<li>@Module 用Module标注的类是专门用来提供依赖的。有的人可能有些疑惑，看了上面的@Inject，需要在构造函数上标记才能提供依赖，那么如果我们需要提供的类构造函数无法修改怎么办，比如一些jar包里的类，我们无法修改源码。这时候就需要使用Module了。Module可以给不能修改源码的类提供依赖，当然，能用Inject标注的通过Module也可以提供依赖</li>
+</ol>
+<ol>
+<li>@Component Component一般用来标注接口，被标注了Component的接口在编译时会产生相应的类的实例来作为提供依赖方和需要依赖方之间的桥梁，把相关依赖注入到其中。</li>
+</ol>
+<p><img src="/assets/img/Image.png" alt="Mou icon"></p>
+<p>被@Inject修饰的成员变量 不能用权限修饰符， 在module类中@provide修饰的方法以小写provide开头提供对象</p>
 
       
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-sdfa" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/09/sdfa/" class="article-date">
-      <time datetime="2016-02-09T03:22:43.000Z" itemprop="datePublished">2016-02-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> 环境配置</p>
-<ul>
-<li>1 安装Node</li>
-<li>2 安装Git
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/02/09/sdfa/#more">more >></a>
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/05/08/Dagger2-依赖注解/">Dagger2(依赖注解)</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Jim</a></p>
+        <p><span>Created:</span>2016-05-08, 12:37:06</p>
+        <p><span>Updated:</span>2017-03-09, 12:40:59</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/05/08/Dagger2-依赖注解/" title="Dagger2(依赖注解)">http://yoursite.com/2016/05/08/Dagger2-依赖注解/</a>
+            <span class="copy-path" data-clipboard-text="From http://yoursite.com/2016/05/08/Dagger2-依赖注解/　　By Jim" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/06/hello-world/" class="article-date">
-      <time datetime="2016-02-06T03:30:54.000Z" itemprop="datePublished">2016-02-06</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/06/hello-world/">Hello World</a>
-    </h1>
-  
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/04/29/RxAndroid之Rxlifecycle使用/">
+                    RxAndroid之Rxlifecycle使用
+                </a>
+            </div>
+        
+    </nav>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Dagger2(依赖注解)　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
 
 
 
@@ -504,13 +401,33 @@
 
 
 
+    
 
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
-  
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/04/29/RxAndroid之Rxlifecycle使用/" title="Next: RxAndroid之Rxlifecycle使用">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/Dagger2-依赖注解/">Dagger2(依赖注解)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/RxAndroid之Rxlifecycle使用/">RxAndroid之Rxlifecycle使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Fragment的懒加载/">Fragment的懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/嵌套滑动机制原理-NestedScroll/">嵌套滑动机制原理(NestedScroll)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/线程更新UI/">线程更新UI</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/RxJava集合/">RxJava系列专题（Android方向）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/RecyclerView（二）之Apater封装/">RecyclerView（二）之Apater封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/RecyclerView基本使用和概念/">RecyclerView基本使用和概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/并发基础（一）/">并发基础（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/多态与接口/">多态与接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/复用类/">Java复用类</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/10/2016学习规划/">2016学习规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/06/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
