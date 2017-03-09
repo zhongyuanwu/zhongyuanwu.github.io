@@ -15,16 +15,19 @@
 
 
 
-<meta name="description" content="并发编程Java是一种多线程语言，并提出了并发问题，对于某些问题，如果能够并行地执行程序中的多个部分，则会变成非常方便和有必要。当并行执行的任务彼此开始产生互相干涉时，实际的并发问题就会接踵而至，这可能会以一种微妙而偶然的方式发生，在实际情况下所编写的并发程序在给定适当条件的时候，将会工作失败，这些条件可能从来不会实际发生，或者发生得不频繁，以至于测试过程中没有发现。并发”具有可论证的确定性，当是">
+<meta name="description" content="http://www.jianshu.com/collection/d79a6385bded
+==Observer== 即观察者，它决定事件触发的时候将有怎样的行为   除了 Observer 接口之外，RxJava 还内置了一个实现了 Observer 的抽象类：Subscriber">
 <meta property="og:type" content="article">
-<meta property="og:title" content="并发基础（一）">
-<meta property="og:url" content="http://yoursite.com/2016/03/06/并发基础（一）/index.html">
+<meta property="og:title" content="RxJava系列专题（Android方向）">
+<meta property="og:url" content="http://yoursite.com/2016/03/22/RxJava集合/index.html">
 <meta property="og:site_name" content="个人博客 - 记录每一步脚印">
-<meta property="og:description" content="并发编程Java是一种多线程语言，并提出了并发问题，对于某些问题，如果能够并行地执行程序中的多个部分，则会变成非常方便和有必要。当并行执行的任务彼此开始产生互相干涉时，实际的并发问题就会接踵而至，这可能会以一种微妙而偶然的方式发生，在实际情况下所编写的并发程序在给定适当条件的时候，将会工作失败，这些条件可能从来不会实际发生，或者发生得不频繁，以至于测试过程中没有发现。并发”具有可论证的确定性，当是">
-<meta property="og:updated_time" content="2017-03-09T03:36:56.586Z">
+<meta property="og:description" content="http://www.jianshu.com/collection/d79a6385bded
+==Observer== 即观察者，它决定事件触发的时候将有怎样的行为   除了 Observer 接口之外，RxJava 还内置了一个实现了 Observer 的抽象类：Subscriber">
+<meta property="og:updated_time" content="2017-03-09T03:45:19.439Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="并发基础（一）">
-<meta name="twitter:description" content="并发编程Java是一种多线程语言，并提出了并发问题，对于某些问题，如果能够并行地执行程序中的多个部分，则会变成非常方便和有必要。当并行执行的任务彼此开始产生互相干涉时，实际的并发问题就会接踵而至，这可能会以一种微妙而偶然的方式发生，在实际情况下所编写的并发程序在给定适当条件的时候，将会工作失败，这些条件可能从来不会实际发生，或者发生得不频繁，以至于测试过程中没有发现。并发”具有可论证的确定性，当是">
+<meta name="twitter:title" content="RxJava系列专题（Android方向）">
+<meta name="twitter:description" content="http://www.jianshu.com/collection/d79a6385bded
+==Observer== 即观察者，它决定事件触发的时候将有怎样的行为   除了 Observer 接口之外，RxJava 还内置了一个实现了 Observer 的抽象类：Subscriber">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>并发基础（一） | 个人博客 - 记录每一步脚印</title>
+<title>RxJava系列专题（Android方向） | 个人博客 - 记录每一步脚印</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -254,11 +257,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-并发基础（一）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-RxJava集合" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/06/并发基础（一）/" class="article-date">
-      <time datetime="2016-03-06T03:30:54.000Z" itemprop="datePublished">2016-03-06</time>
+      <a href="/2016/03/22/RxJava集合/" class="article-date">
+      <time datetime="2016-03-22T03:44:00.000Z" itemprop="datePublished">2016-03-22</time>
 </a>
 
 
@@ -273,7 +276,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      并发基础（一）
+      RxJava系列专题（Android方向）
     </h1>
   
 
@@ -284,7 +287,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -294,27 +297,31 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h3><p>Java是一种多线程语言，并提出了并发问题，对于某些问题，如果能够并行地执行程序中的多个部分，则会变成非常方便和有必要。当并行执行的任务彼此开始产生互相干涉时，实际的并发问题就会接踵而至，这可能会以一种微妙而偶然的方式发生，在实际情况下所编写的并发程序在给定适当条件的时候，将会工作失败，这些条件可能从来不会实际发生，或者发生得不频繁，以至于测试过程中没有发现。并发”具有可论证的确定性，当是实际上具有不确定性”，如果我们视而不见就会遭其反噬。<br><a id="more"></a></p>
-<h4 id="并发的多面性"><a href="#并发的多面性" class="headerlink" title="并发的多面性"></a>并发的多面性</h4><p>用并发解决的问题大体上分为”速度”和”设计可管理性”两种。</p>
-<ol>
-<li>更快的执行</li>
-</ol>
-<p>并发通常是提高运行在单处理器上的程序性能，在单处理器上并发程序开销却比所有部分顺序执行要大，因此增加所谓的上下文切换的代价，使这个问题变得的不同的是阻塞。如果程序中某个任务因为该程序控制范围之外的某些条件（I/O）而导致不能继续执行，那么我们就说这个任务或线程阻塞了。一个任务阻塞时，程序中的其他任务还可以继续执行。并发的每一个任务都作为进程在自己的地址空间中执行，因此任务之间根本不可能互相干涉，它们之间没有任何彼此通信的需要，因为它们都是完全独立的。操作系统会处理确保文件正确复制的所有细节，不会有任何风险，你可以获得更快的程序。</p>
-<ol>
-<li><p>改进代码设计</p>
-<p>协作多线程，Java的线程机制是抢占式的，这表示调度机制会周期性的中断线程，将上下文切换到另一个线程，从而为每一个线程都提供时间片，使得每一个线程都会被分配到合理的时间去驱动它的任务。并发需要付出代价，包含复杂性代价，但是这些代价与在程序设计，资源负载均衡以及用户方便使用方面的改进相比，都显得微不足道。通常，线程使你能够创建更加松散耦合的设计，否则，你的代码中各个部分都必须显示的关注那些可以用线程来处理的任务。</p>
-</li>
-</ol>
-<h4 id="基本的线程机制"><a href="#基本的线程机制" class="headerlink" title="基本的线程机制"></a>基本的线程机制</h4><p>并发编程使我们可以将程序划分为多个分离的，独立运行的任务，通过使用多线程这些独立的任务中的每一个都将执行由执行线程来驱动。</p>
-<ol>
-<li>定义任务，线程可以驱动任务，因此需要一种描叙任务的方式，由Runnable接口来提供给，要定义任务，只需要实现Runnable接口并运行run()，使得该任务可以执行你的命令。</li>
-<li>任务的run()方法通常总会有某种形式的循环，使得任务一直运行下去直到不再需要，要切换线程可以使用静态方法Thread.yield()，在后面将会有如何安全地终止线程。</li>
-<li>Thread类，将Runnable对象转变为工作任务的传统方式是把它提交给一个Thread构造器如下： <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Thread t = new Thread(new DeamomFinal());</div><div class="line">       t.start();</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>DeamomFinal是实现Runnable接口的类。<br>4.使用Executor，Executor（执行器）将为你管理Thread对象，从而简化了并发编程，Executor允许你管理异步任务的执行，而无须显示地管理线程的生命周期，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ExecutorService exec = Executors.newCachedThreadPool();</div><div class="line">       exec.execute(new DeamomFinal());</div><div class="line">       exec.shutdown();</div></pre></td></tr></table></figure>
-<p>5. </p>
+        <p><a href="http://www.jianshu.com/collection/d79a6385bded" target="_blank" rel="external">http://www.jianshu.com/collection/d79a6385bded</a></p>
+<h3 id="Observer-即观察者，它决定事件触发的时候将有怎样的行为-除了-Observer-接口之外，RxJava-还内置了一个实现了-Observer-的抽象类：Subscriber"><a href="#Observer-即观察者，它决定事件触发的时候将有怎样的行为-除了-Observer-接口之外，RxJava-还内置了一个实现了-Observer-的抽象类：Subscriber" class="headerlink" title="==Observer== 即观察者，它决定事件触发的时候将有怎样的行为   除了 Observer 接口之外，RxJava 还内置了一个实现了 Observer 的抽象类：Subscriber"></a>==Observer== 即观察者，它决定事件触发的时候将有怎样的行为   除了 Observer 接口之外，RxJava 还内置了一个实现了 Observer 的抽象类：Subscriber</h3><a id="more"></a>
+<pre><code>1. onStart(): 这是 Subscriber 增加的方法。它会在 subscribe 刚开始，而事件还未发送之前被调用，可以用于做一些准备工作，例如数据的清零或重置。这是一个可选方法，默认情况下它的实现为空。需要注意的是，如果对准备工作的线程有要求（例如弹出一个显示进度的对话框，这必须在主线程执行）， onStart() 就不适用了，因为它总是在 subscribe 所发生的线程被调用，而不能指定线程。要在指定的线程来做准备工作，可以使用 doOnSubscribe() 方法，具体可以在后面的文中看到。
+2. unsubscribe(): 这是 Subscriber 所实现的另一个接口 Subscription 的方法，用于取消订阅。在这个方法被调用后，Subscriber 将不再接收事件。一般在这个方法调用前，可以使用 isUnsubscribed() 先判断一下状态。 unsubscribe() 这个方法很重要，因为在subscribe() 之后， Observable 会持有 Subscriber 的引用，这个引用如果不能及时被释放，将有内存泄露的风险。所以最好保持一个原则：要在不再使用的时候尽快在合适的地方（例如 onPause() onStop() 等方法中）调用 unsubscribe() 来解除引用关系，以避免内存泄露的发生。
+</code></pre><p>Observer通过create（）just（）等方法创建（其内部有OnSubscribe这个唯一属性，同时也是创建Observer必须要传的参数，Observer的创建是内部调用构造函数生成）————》<br>Observer的创建逻辑梳理： Observable.create()方法构造了一个被观察者Observable对象，同时将new出来的OnSubscribe赋值给了该Observable的成员变量onSubscribe。</p>
+<p>Observer 通过订阅subscribe让事件开始执行，即subscribe被订阅后会把自己传给Observer被观察者内部的 OnSubscribe属性，而onSubscribe工作就是调用 call(subscriber)来通知被观察者发送消息给这个subscriber。</p>
+<p><a href="http://gank.io/post/560e15be2dca930e00da1083#toc_14" target="_blank" rel="external">http://gank.io/post/560e15be2dca930e00da1083#toc_14</a></p>
+<p><a href="https://github.com/cn-ljb/rxjava_for_android" target="_blank" rel="external">https://github.com/cn-ljb/rxjava_for_android</a></p>
+<h3 id="Observable-即被观察者，它决定什么时候触发事件以及触发怎样的事件。-RxJava-使用-create-方法来创建一个-Observable-，并为它定义事件触发规则："><a href="#Observable-即被观察者，它决定什么时候触发事件以及触发怎样的事件。-RxJava-使用-create-方法来创建一个-Observable-，并为它定义事件触发规则：" class="headerlink" title="==Observable== 即被观察者，它决定什么时候触发事件以及触发怎样的事件。 RxJava 使用 create() 方法来创建一个 Observable ，并为它定义事件触发规则："></a>==Observable== 即被观察者，它决定什么时候触发事件以及触发怎样的事件。 RxJava 使用 create() 方法来创建一个 Observable ，并为它定义事件触发规则：</h3><p>create() 方法是 RxJava 最基本的创造事件序列的方法。基于这个方法， RxJava 还提供了一些方法用来快捷创建事件队列，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Observable observable = Observable.create(new Observable.OnSubscribe&lt;String&gt;() &#123;</div><div class="line">    @Override</div><div class="line">    public void call(Subscriber&lt;? super String&gt; subscriber) &#123;</div><div class="line">        subscriber.onNext(&quot;Hello&quot;);</div><div class="line">        subscriber.onNext(&quot;Hi&quot;);</div><div class="line">        subscriber.onNext(&quot;Aloha&quot;);</div><div class="line">        subscriber.onCompleted();</div><div class="line">    &#125;&#125;);</div></pre></td></tr></table></figure>
+<p>可以看到，这里传入了一个 OnSubscribe 对象作为参数。OnSubscribe 会被存储在返回的 Observable 对象中，它的作用相当于一个计划表，当 Observable 被订阅的时候，OnSubscribe 的 call() 方法会自动被调用，事件序列就会依照设定依次触发（对于上面的代码，就是被观察者Subscriber 将会被调用三次 onNext() 和一次 onCompleted()）。这样，由被观察者调用了观察者的回调方法，就实现了由被观察者向观察者的事件传递，即观察者模式。</p>
+<pre><code>* just(T...): 将传入的参数依次发送出来。
+</code></pre><p>Observable observable = Observable.just(“Hello”, “Hi”, “Aloha”);// 将会依次调用：// onNext(“Hello”);// onNext(“Hi”);// onNext(“Aloha”);// onCompleted();</p>
+<pre><code>* from(T[]) / from(Iterable&lt;? extends T&gt;) : 将传入的数组或 Iterable 拆分成具体对象后，依次发送出来。
+</code></pre><p>String[] words = {“Hello”, “Hi”, “Aloha”};Observable observable = Observable.from(words);// 将会依次调用：// onNext(“Hello”);// onNext(“Hi”);// onNext(“Aloha”);// onCompleted();<br>上面 just(T…) 的例子和 from(T[]) 的例子，都和之前的 create(OnSubscribe) 的例子是等价的。</p>
+<p>观察者模式本身的目的就是『后台处理，前台回调』的异步机制，因此异步对于 RxJava 是至关重要的。而要实现异步，则需要用到 RxJava 的另一个概念： Scheduler 。</p>
+<pre><code>* Schedulers.immediate(): 直接在当前线程运行，相当于不指定线程。这是默认的 Scheduler。
+* Schedulers.newThread(): 总是启用新线程，并在新线程执行操作。
+* Schedulers.io(): I/O 操作（读写文件、读写数据库、网络信息交互等）所使用的 Scheduler。行为模式和 newThread() 差不多，区别在于 io() 的内部实现是是用一个无数量上限的线程池，可以重用空闲的线程，因此多数情况下 io() 比 newThread() 更有效率。不要把计算工作放在 io() 中，可以避免创建不必要的线程。
+* Schedulers.computation(): 计算所使用的 Scheduler。这个计算指的是 CPU 密集型计算，即不会被 I/O 等操作限制性能的操作，例如图形的计算。这个 Scheduler 使用的固定的线程池，大小为 CPU 核数。不要把 I/O 操作放在 computation() 中，否则 I/O 操作的等待时间会浪费 CPU。
+* 另外， Android 还有一个专用的 AndroidSchedulers.mainThread()，它指定的操作将在 Android 主线程运行。
+</code></pre><p>有了这几个 Scheduler ，就可以使用 subscribeOn() 和 observeOn() 两个方法来对线程进行控制了。 <em> subscribeOn(): 指定subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程。 </em> observeOn(): 指定Subscriber 所运行在的线程。或者叫做事件消费的线程。<br>RxJava可以很方便的通过subscribeOn()和observeOn()来指定数据流的每一部分运行在哪个线程。其中subscribeOn()指定了处理Observable的全部的过程(包括发射数据和通知)的线程；observeOn()指定了观察者的onNext(), onError()和onCompleted()执行的线程。</p>
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="==操作符=="></a>==操作符==</h3><p>Creating Observables(Observable的创建操作符)，比如：Observable.create()、Observable.just()、Observable.from()等等； Transforming Observables(Observable的转换操作符)，比如：observable.map()、observable.flatMap()、observable.buffer()等等；<br>Filtering Observables(Observable的过滤操作符)，比如：observable.filter()、observable.sample()、observable.take()等等； Combining Observables(Observable的组合操作符)，比如：observable.join()、observable.merge()、observable.combineLatest()等等； Error Handling Operators(Observable的错误处理操作符)，比如:observable.onErrorResumeNext()、observable.retry()等等；<br>Observable Utility Operators(Observable的功能性操作符)，比如：observable.subscribeOn()、observable.observeOn()、observable.delay()等等； Conditional and Boolean Operators(Observable的条件操作符)，比如：observable.amb()、observable.contains()、observable.skipUntil()等等； Mathematical and Aggregate Operators(Observable数学运算及聚合操作符)，比如：observable.count()、observable.reduce()、observable.concat()等等；</p>
+<p>其他如observable.toList()、observable.connect()、observable.publish()等等；</p>
+<p>背压 ： <a href="http://gold.xitu.io/post/582d413c8ac24700619cceed" target="_blank" rel="external">http://gold.xitu.io/post/582d413c8ac24700619cceed</a></p>
 
       
     </div>
@@ -323,13 +330,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/03/06/并发基础（一）/">并发基础（一）</a></p>
+        <p><span>本文标题:</span><a href="/2016/03/22/RxJava集合/">RxJava系列专题（Android方向）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
-        <p><span>发布时间:</span>2016-03-06, 11:30:54</p>
-        <p><span>最后更新:</span>2017-03-09, 11:36:56</p>
+        <p><span>发布时间:</span>2016-03-22, 11:44:00</p>
+        <p><span>最后更新:</span>2017-03-09, 11:45:19</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/03/06/并发基础（一）/" title="并发基础（一）">http://yoursite.com/2016/03/06/并发基础（一）/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/03/06/并发基础（一）/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/03/22/RxJava集合/" title="RxJava系列专题（Android方向）">http://yoursite.com/2016/03/22/RxJava集合/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/03/22/RxJava集合/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -341,16 +348,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/03/11/RecyclerView基本使用和概念/">
-                    RecyclerView基本使用和概念
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/02/26/多态与接口/">
-                    多态与接口
+                <a href="/2016/03/14/RecyclerView（二）之Apater封装/">
+                    RecyclerView（二）之Apater封装
                 </a>
             </div>
         
@@ -362,7 +363,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#并发编程"><span class="toc-number">1.</span> <span class="toc-text">并发编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#并发的多面性"><span class="toc-number">1.1.</span> <span class="toc-text">并发的多面性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本的线程机制"><span class="toc-number">1.2.</span> <span class="toc-text">基本的线程机制</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Observer-即观察者，它决定事件触发的时候将有怎样的行为-除了-Observer-接口之外，RxJava-还内置了一个实现了-Observer-的抽象类：Subscriber"><span class="toc-number">1.</span> <span class="toc-text">==Observer== 即观察者，它决定事件触发的时候将有怎样的行为   除了 Observer 接口之外，RxJava 还内置了一个实现了 Observer 的抽象类：Subscriber</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observable-即被观察者，它决定什么时候触发事件以及触发怎样的事件。-RxJava-使用-create-方法来创建一个-Observable-，并为它定义事件触发规则："><span class="toc-number">2.</span> <span class="toc-text">==Observable== 即被观察者，它决定什么时候触发事件以及触发怎样的事件。 RxJava 使用 create() 方法来创建一个 Observable ，并为它定义事件触发规则：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作符"><span class="toc-number">3.</span> <span class="toc-text">==操作符==</span></a></li></ol>
         
     </div>
     <style>
@@ -398,7 +399,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"并发基础（一）　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"RxJava系列专题（Android方向）　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -418,15 +419,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/03/11/RecyclerView基本使用和概念/" title="上一篇: RecyclerView基本使用和概念">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/02/26/多态与接口/" title="下一篇: 多态与接口">
+            <a href="/2016/03/14/RecyclerView（二）之Apater封装/" title="下一篇: RecyclerView（二）之Apater封装">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Jim" />
+
+
+
+<meta name="description" content="RecyclerView基本使用和概念（一）
+定义：能够在有限的窗口中展示大数据集合的灵活视图能够理解为，RecyclerView一个使用场景是：由于尺寸限制，用户设备不能一次性展现所有条目，用户需要上下滚动以查看更多条目，滚出可见条目被回收，并在下一个条目可见的时候被复用。用于代替listview控件，比listview更灵活，功能也更强大，性能优化更好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RecyclerView基本使用和概念">
+<meta property="og:url" content="http://yoursite.com/2016/03/11/RecyclerView基本使用和概念/index.html">
+<meta property="og:site_name" content="个人博客 - 记录每一步脚印">
+<meta property="og:description" content="RecyclerView基本使用和概念（一）
+定义：能够在有限的窗口中展示大数据集合的灵活视图能够理解为，RecyclerView一个使用场景是：由于尺寸限制，用户设备不能一次性展现所有条目，用户需要上下滚动以查看更多条目，滚出可见条目被回收，并在下一个条目可见的时候被复用。用于代替listview控件，比listview更灵活，功能也更强大，性能优化更好。">
+<meta property="og:updated_time" content="2017-03-09T03:41:55.475Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RecyclerView基本使用和概念">
+<meta name="twitter:description" content="RecyclerView基本使用和概念（一）
+定义：能够在有限的窗口中展示大数据集合的灵活视图能够理解为，RecyclerView一个使用场景是：由于尺寸限制，用户设备不能一次性展现所有条目，用户需要上下滚动以查看更多条目，滚出可见条目被回收，并在下一个条目可见的时候被复用。用于代替listview控件，比listview更灵活，功能也更强大，性能优化更好。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="个人博客 - 记录每一步脚印" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>RecyclerView基本使用和概念 | 个人博客 - 记录每一步脚印</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/head.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Jim</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://melonlee.com/">李辉</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Android</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Jim</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/head.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Jim</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-RecyclerView基本使用和概念" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/11/RecyclerView基本使用和概念/" class="article-date">
+      <time datetime="2016-03-11T03:40:29.000Z" itemprop="datePublished">2016-03-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RecyclerView基本使用和概念
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>RecyclerView基本使用和概念（一）</p>
+<p>定义：能够在有限的窗口中展示大数据集合的灵活视图<br>能够理解为，RecyclerView一个使用场景是：由于尺寸限制，用户设备不能一次性展现所有条目，用户需要上下滚动以查看更多条目，滚出可见条目被回收，并在下一个条目可见的时候被复用。用于代替listview控件，比listview更灵活，功能也更强大，性能优化更好。<br><a id="more"></a></p>
+<h3 id="基本使用和组成"><a href="#基本使用和组成" class="headerlink" title="基本使用和组成"></a>基本使用和组成</h3><p>想要使用RecyclerView，需要做以下操作：</p>
+<ol>
+<li>RecyclerView.Adapter - 用于处理数据集合并负责绑定视图</li>
+<li>ViewHolder -  持有所有的用于绑定数据或者需要操作的View</li>
+<li>LayoutManager - 负责item视图展现的规则</li>
+<li>ItemDecoration - 定制分割线</li>
+<li>ItemAnimator - 为item操作添加动画效果，如增删条目</li>
+</ol>
+<h4 id="RecyclerView-Adapter和ViewHolder"><a href="#RecyclerView-Adapter和ViewHolder" class="headerlink" title="RecyclerView.Adapter和ViewHolder"></a>RecyclerView.Adapter和ViewHolder</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">public class SimpleRecycleAdapter extends RecyclerView.Adapter&lt;SimpleRecycleAdapter.SimpleViewHolder&gt; &#123;</div><div class="line">    protected Context mContext;</div><div class="line">    protected  List mList;</div><div class="line"></div><div class="line">    public SimpleRecycleAdapter(Context context, List listData) &#123;</div><div class="line">        this.mContext = context;</div><div class="line">        this.mList=listData;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 第一步创建ViewHolder(可以是adapter内部类，也可以单独写成一个类) 传入adapter 泛型括号里</div><div class="line">     * 创建的ViewHolder类需要传入一个View到里面，也就是item视图的layout，在OnCreaterViewHolder方法里创建对象并返回</div><div class="line">     */</div><div class="line">    protected static class SimpleViewHolder extends RecyclerView.ViewHolder &#123;</div><div class="line">    protected TextView textView;</div><div class="line">        public SimpleViewHolder(View view) &#123;</div><div class="line">            super(view);</div><div class="line">            this.textView = (TextView) itemView.findViewById(R.id.text);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 第二步实现onCreateViewHolder方法，发现返回的是我们刚刚创建的SimpleViewHolder</div><div class="line">     *</div><div class="line">     * @param parent</div><div class="line">     * @param viewType</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) &#123;</div><div class="line">        //创建一个View</div><div class="line">        View view = View.inflate(mContext, R.layout.simple_item, null);</div><div class="line">        //创建一个ViewHolder 传入view</div><div class="line">        SimpleViewHolder simpleViewHolder = new SimpleViewHolder(view);</div><div class="line">        return simpleViewHolder;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 第三步实现getitemcount方法，跟listview一样需要传入条目总个数</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public int getItemCount() &#123;</div><div class="line">        return mList.size();</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 第四步实现onBindViewHolder方法绑定数据，两个参数holder（需要操作的item视图），position（对应视图的位置）</div><div class="line">     * 这时候发现该adapter没有报错了，基本实现已完成</div><div class="line">     * @param holder</div><div class="line">     * @param position</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public void onBindViewHolder(SimpleViewHolder holder, int position) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="RecyclerView-LayoutManager"><a href="#RecyclerView-LayoutManager" class="headerlink" title="RecyclerView.LayoutManager"></a>RecyclerView.LayoutManager</h4><p>LayoutManager的职责是摆放Item的位置，并且负责决定何时回收和重用Item。</p>
+<p>必须为RecyclerView指定LayoutManager，否则会出现以下异常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AndroidRuntime java.lang.NullPointerException: Attempt to invoke virtual method ‘void android.support.v7.widget.RecyclerView$LayoutManager.onMeasure(android.support.v7.widget.RecyclerView$Recycler, android.support.v7.widget.RecyclerView$State, int, int)’ on a null object reference</div></pre></td></tr></table></figure>
+<ol>
+<li>LinearLayoutManager 水平或者垂直的Item视图。</li>
+<li>GridLayoutManager 网格Item视图。</li>
+<li>StaggeredGridLayoutManager 交错的网格Item视图。</li>
+</ol>
+<p>最后和adapter一起设置到RecyclerView中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SimpleRecycleAdapter simpleRecycleAdapter=new SimpleRecycleAdapter(this,listData);</div><div class="line">RecyclerView recyclerView=(RecyclerView) findViewById(R.id.simple_recycler);</div><div class="line">recyclerView.setLayoutManager(new LinearLayoutManager(this));</div><div class="line">recyclerView.setAdapter(simpleRecycleAdapter);</div></pre></td></tr></table></figure>
+<h4 id="RecyclerView-ItemDecoration"><a href="#RecyclerView-ItemDecoration" class="headerlink" title="RecyclerView.ItemDecoration"></a>RecyclerView.ItemDecoration</h4><p>通过设置recyclerView.addItemDecoration(new DividerDecoration(this));来改变Item之间的偏移量或者对Item进行装饰。</p>
+<p>当然，你也可以对RecyclerView设置多个ItemDecoration，列表展示的时候会遍历所有的ItemDecoration并调用里面的绘制方法，对Item进行装饰。</p>
+<p>RecyclerView.ItemDecoration是一个抽象类，可以通过重写以下三个方法，来实现Item之间的偏移量或者装饰效果：</p>
+<p>public void onDraw(Canvas c, RecyclerView parent) 装饰的绘制在Item条目绘制之前调用，所以这有可能被Item的内容所遮挡</p>
+<p>public void onDrawOver(Canvas c, RecyclerView parent) 装饰的绘制在Item条目绘制之后调用，因此装饰将浮于Item之上</p>
+<p>public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) 与padding或margin类似，LayoutManager在测量阶段会调用该方法，计算出每一个Item的正确尺寸并设置偏移量。</p>
+<h4 id="RecyclerView。ItemAnimator"><a href="#RecyclerView。ItemAnimator" class="headerlink" title="RecyclerView。ItemAnimator"></a>RecyclerView。ItemAnimator</h4><p>ItemAnimator能够帮助Item实现独立的动画。</p>
+<p>ItemAnimator作触发于以下三种事件：</p>
+<p>某条数据被插入到数据集合中<br>从数据集合中移除某条数据<br>更改数据集合中的某条数据<br>幸运的是，在Android中默认实现了一个DefaultItemAnimator，我们可以通过以下代码为Item增加动画效果：</p>
+<p>recyclerView.setItemAnimator(new DefaultItemAnimator());<br>在之前的版本中，当时据集合发生改变时，我们通过调用.notifyDataSetChanged()，来刷新列表，因为这样做会触发列表的重绘，所以并不会出现任何动画效果，因此需要调用一些以notifyItem*()作为前缀的特殊方法，比如：</p>
+<p>public final void notifyItemInserted(int position) 向指定位置插入Item</p>
+<p>public final void notifyItemRemoved(int position) 移除指定位置Item</p>
+<p>public final void notifyItemChanged(int position) 更新指定位置Item</p>
+<h4 id="Listeners"><a href="#Listeners" class="headerlink" title="Listeners"></a>Listeners</h4><p>对一个RecyclerViewitem的监听需要到onCreateViewHolder方法里对view设置点击监听，RecyclerView并没有专门的item点击监听，长按也一样</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/03/11/RecyclerView基本使用和概念/">RecyclerView基本使用和概念</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
+        <p><span>发布时间:</span>2016-03-11, 11:40:29</p>
+        <p><span>最后更新:</span>2017-03-09, 11:41:55</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/03/11/RecyclerView基本使用和概念/" title="RecyclerView基本使用和概念">http://yoursite.com/2016/03/11/RecyclerView基本使用和概念/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/03/11/RecyclerView基本使用和概念/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/03/14/RecyclerView（二）之Apater封装/">
+                    RecyclerView（二）之Apater封装
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/03/06/并发基础（一）/">
+                    并发基础（一）
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本使用和组成"><span class="toc-number">1.</span> <span class="toc-text">基本使用和组成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RecyclerView-Adapter和ViewHolder"><span class="toc-number">1.1.</span> <span class="toc-text">RecyclerView.Adapter和ViewHolder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RecyclerView-LayoutManager"><span class="toc-number">1.2.</span> <span class="toc-text">RecyclerView.LayoutManager</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RecyclerView-ItemDecoration"><span class="toc-number">1.3.</span> <span class="toc-text">RecyclerView.ItemDecoration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RecyclerView。ItemAnimator"><span class="toc-number">1.4.</span> <span class="toc-text">RecyclerView。ItemAnimator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Listeners"><span class="toc-number">1.5.</span> <span class="toc-text">Listeners</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"RecyclerView基本使用和概念　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/03/14/RecyclerView（二）之Apater封装/" title="上一篇: RecyclerView（二）之Apater封装">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/03/06/并发基础（一）/" title="下一篇: 并发基础（一）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/RxJava集合/">RxJava系列专题（Android方向）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/RecyclerView（二）之Apater封装/">RecyclerView（二）之Apater封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/RecyclerView基本使用和概念/">RecyclerView基本使用和概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/并发基础（一）/">并发基础（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/多态与接口/">多态与接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/复用类/">Java复用类</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/10/2016学习规划/">2016学习规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/06/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Jim
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
