@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546/**     * 旋转图片     *     * @param bitmap     *            源图片     * @param angle     *            旋转角度(90为顺时针旋转, -90">
+<meta name="description" content="Service是Android的四大组件之一，被用来执行长时间的后台任务，同样，线程也可以实现在后台执行任务，它们的区别在哪呢？何时使用Service何时使用Thread呢？今天我也来说说我的理解和总结。首先，需要了解Service的几个特点。（1） 默认情况下，Service其实是运行在主线程中的，如果需要执行复杂耗时的操作，必须在Service中再创建一个Thread来执行任务。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图片旋转">
-<meta property="og:url" content="http://yoursite.com/2016/06/19/图片旋转/index.html">
+<meta property="og:title" content="使用Service还是Thread">
+<meta property="og:url" content="http://yoursite.com/2016/07/29/使用Service还是Thread/index.html">
 <meta property="og:site_name" content="个人博客 - 记录每一步脚印">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546/**     * 旋转图片     *     * @param bitmap     *            源图片     * @param angle     *            旋转角度(90为顺时针旋转, -90">
-<meta property="og:updated_time" content="2017-03-09T06:48:33.741Z">
+<meta property="og:description" content="Service是Android的四大组件之一，被用来执行长时间的后台任务，同样，线程也可以实现在后台执行任务，它们的区别在哪呢？何时使用Service何时使用Thread呢？今天我也来说说我的理解和总结。首先，需要了解Service的几个特点。（1） 默认情况下，Service其实是运行在主线程中的，如果需要执行复杂耗时的操作，必须在Service中再创建一个Thread来执行任务。">
+<meta property="og:updated_time" content="2017-03-10T09:11:34.863Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图片旋转">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546/**     * 旋转图片     *     * @param bitmap     *            源图片     * @param angle     *            旋转角度(90为顺时针旋转, -90">
+<meta name="twitter:title" content="使用Service还是Thread">
+<meta name="twitter:description" content="Service是Android的四大组件之一，被用来执行长时间的后台任务，同样，线程也可以实现在后台执行任务，它们的区别在哪呢？何时使用Service何时使用Thread呢？今天我也来说说我的理解和总结。首先，需要了解Service的几个特点。（1） 默认情况下，Service其实是运行在主线程中的，如果需要执行复杂耗时的操作，必须在Service中再创建一个Thread来执行任务。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>图片旋转 | 个人博客 - 记录每一步脚印</title>
+<title>使用Service还是Thread | 个人博客 - 记录每一步脚印</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -254,11 +254,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-图片旋转" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-使用Service还是Thread" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/19/图片旋转/" class="article-date">
-      <time datetime="2016-06-19T06:46:50.000Z" itemprop="datePublished">2016-06-19</time>
+      <a href="/2016/07/29/使用Service还是Thread/" class="article-date">
+      <time datetime="2016-07-29T07:01:22.000Z" itemprop="datePublished">2016-07-29</time>
 </a>
 
 
@@ -273,7 +273,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      图片旋转
+      使用Service还是Thread
     </h1>
   
 
@@ -294,8 +294,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">     * 旋转图片</div><div class="line">     *</div><div class="line">     * @param bitmap</div><div class="line">     *            源图片</div><div class="line">     * @param angle</div><div class="line">     *            旋转角度(90为顺时针旋转, -90为逆时针旋转)</div><div class="line">     * @return Bitmap</div><div class="line">     */</div><div class="line">    public Bitmap rotate(Bitmap bitmap, float angle) &#123;</div><div class="line">        Matrix matrix = new Matrix();</div><div class="line">        matrix.postRotate( angle);</div><div class="line">        return Bitmap.createBitmap( bitmap, 0, 0, bitmap.getWidth(), bitmap .getHeight(), matrix, true);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">等比例缩放</div><div class="line"></div><div class="line">private int bg_width ;</div><div class="line">private int bg_height ;</div><div class="line">private Bitmap scaleImage(Bitmap bitmap ) &#123;</div><div class="line"></div><div class="line">         if (bitmap != null) &#123;</div><div class="line"></div><div class="line">             int widht = bitmap .getWidth();</div><div class="line">             int height = bitmap .getHeight();</div><div class="line"></div><div class="line">             int new_width = 0;</div><div class="line">             int new_height = 0;</div><div class="line"></div><div class="line">             if (widht != height ) &#123;</div><div class="line">                 if (widht &gt; height ) &#123;</div><div class="line">                     new_height = bg_height ;</div><div class="line">                     new_width = widht * new_height / height ;</div><div class="line">                &#125; else &#123;</div><div class="line">                     new_width = bg_width ;</div><div class="line">                     new_height = height * new_width / widht ;</div><div class="line">                &#125;</div><div class="line">            &#125; else &#123;</div><div class="line">                 new_width = bg_width ;</div><div class="line">                 new_height = bg_height ;</div><div class="line">            &#125;</div><div class="line">             bitmap = Bitmap.createScaledBitmap(bitmap, new_width, new_height,</div><div class="line">                     true);</div><div class="line">        &#125;</div><div class="line">         return bitmap ;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+        <p>Service是Android的四大组件之一，被用来执行长时间的后台任务，同样，线程也可以实现在后台执行任务，它们的区别在哪呢？何时使用Service何时使用Thread呢？今天我也来说说我的理解和总结。<br>首先，需要了解Service的几个特点。<br>（1） 默认情况下，Service其实是运行在主线程中的，如果需要执行复杂耗时的操作，必须在Service中再创建一个Thread来执行任务。<br><a id="more"></a><br>（2） Service的优先级高于后台挂起的Activity，当然，也高于Activity所创建的Thread，因此，系统可能在内存不足的时候优先杀死后台的Activity或者Thread，而不会轻易杀死Service组件，即使被迫杀死Service，也会在资源可用时重启被杀死的Service<br>其实，Service和Thread根本就不是一个级别的东西，Service是系统的四大组件之一，Thread只是一个用来执行后台任务的工具类，它可以在Activity中被创建，也可以在Service中被创建。因此，我们其实不应该讨论该使用Service还是Thread，而是应该讨论在什么地方创建Thread。<br>典型的应用中，它可以在以下三个位置被创建，不同的位置，其生命周期不一样，所以，我们应该根据该Thread的目标生命周期来决定是在Service中创建Thread还是在Activity中创建它。<br>（1） 在Activity中被创建<br>这种情况下，一般在onCreate时创建，在onDestroy()中销毁，否则，Activity销毁后，Thread是会依然在后台运行着。<br>这种情况下，Thread的生命周期即为整个Activity的生命周期。所以，在Activity中创建的Thread只适合完成一些依赖Activity本身有关的任务，比如定时更新一下Activity的控件状态等。<br>核心特点：该Thread的就是为这个Activity服务的，完成这个特定的Activity交代的任务，主动通知该Activity一些消息和事件，Activity销毁后，该Thread也没有存活的意义了。<br>（2）在Application中被创建<br>这种情况下，一般自定义Application类，重载onCreate方法，并在其中创建Thread，当然，也会在onTerminate()方法中销毁Thread，否则，如果Thread没有退出的话，即使整个Application退出了，线程依然会在后台运行着。<br>这种情况下，Thread的生命周期即为整个Application的生命周期。所以，在Application中创建的Thread，可以执行一些整个应用级别的任务，比如定时检查一下网络连接状态等等。<br>核心特点：该Thread的终极目标是为这个APP的各个Activity服务的，包括完成某个Activity交代的任务，主动通知某个Activity一些消息和事件等，APP退出之后该Thread也没有存活的意义了。<br>以上这两种情况下，Thread的生命周期都不应该超出整个应用程序的生命周期，也就是，整个APP退出之后，Thread都应该完全退出，这样才不会出现内存泄漏或者僵尸线程。那么，如果你希望整个APP都退出之后依然能运行该Thread，那么就应该把Thread放到Service中去创建和启动了。<br>（3）在Service中被创建<br>这是保证最长生命周期的Thread的唯一方式，只要整个Service不退出，Thread就可以一直在后台执行，一般在Service的onCreate()中创建，在onDestroy()中销毁。<br>所以，在Service中创建的Thread，适合长期执行一些独立于APP的后台任务，比较常见的就是：在Service中保持与服务器端的长连接。<br>核心特点：该Thread可以为APP提供一些“服务”或者“状态查询”，但该Thread并不需要主动通知APP任何事件，甚至不需要知道APP是谁。<br>总之，我们不是要考虑该用Thread或者该用Service，而是应该为Thread选择合适的生命周期，这就是我对Service和Thread的思考和理解</p>
+
       
     </div>
     
@@ -303,13 +303,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/06/19/图片旋转/">图片旋转</a></p>
+        <p><span>本文标题:</span><a href="/2016/07/29/使用Service还是Thread/">使用Service还是Thread</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
-        <p><span>发布时间:</span>2016-06-19, 14:46:50</p>
-        <p><span>最后更新:</span>2017-03-09, 14:48:33</p>
+        <p><span>发布时间:</span>2016-07-29, 15:01:22</p>
+        <p><span>最后更新:</span>2017-03-10, 17:11:34</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/06/19/图片旋转/" title="图片旋转">http://yoursite.com/2016/06/19/图片旋转/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/06/19/图片旋转/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/29/使用Service还是Thread/" title="使用Service还是Thread">http://yoursite.com/2016/07/29/使用Service还是Thread/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/07/29/使用Service还是Thread/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -322,15 +322,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/06/25/深入理解-intent/">
-                    深入理解 intent
+                <a href="/2016/08/24/Retrofit2-0中注解使用方式/">
+                    Retrofit2.0中注解使用方式
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/06/09/属性动画/">
-                    属性动画
+                <a href="/2016/07/08/Intent中显示意图和隐式意图的用法/">
+                    Intent中显示意图和隐式意图的用法
                 </a>
             </div>
         
@@ -378,7 +378,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"图片旋转　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"使用Service还是Thread　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -398,7 +398,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/06/25/深入理解-intent/" title="上一篇: 深入理解 intent">
+            <a href="/2016/08/24/Retrofit2-0中注解使用方式/" title="上一篇: Retrofit2.0中注解使用方式">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -406,7 +406,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/06/09/属性动画/" title="下一篇: 属性动画">
+            <a href="/2016/07/08/Intent中显示意图和隐式意图的用法/" title="下一篇: Intent中显示意图和隐式意图的用法">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -257,6 +257,136 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Retrofit2-0中注解使用方式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/24/Retrofit2-0中注解使用方式/" class="article-date">
+      <time datetime="2016-08-24T09:01:52.000Z" itemprop="datePublished">2016-08-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/24/Retrofit2-0中注解使用方式/">Retrofit2.0中注解使用方式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>说说Retrofit中的注解<br>七种常用注解：@Query，@QueryMap，@Field，@FieldMap，@FormUrlEncoded，@Path，@Url<br>一、get方式请求静态url地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com/&quot;)</div><div class="line">    .build();</div><div class="line">public interface GitHubService &#123;</div><div class="line">    //无参数</div><div class="line">    @GET(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos();</div><div class="line">    //少数参数</div><div class="line">    @GET(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@Query(&quot;time&quot;) long time);</div><div class="line">    //参数较多</div><div class="line">    @GET(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@QueryMap Map&lt;String, String&gt; params);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>@Query和@QueryMap也可以结合在一起使用。</p>
+<p>要是对应的url在服务端支持get/post两种类型的请求的话，那么上面的@GET变为@POST也可以执行，只不过post请求时所带的参数也会像get方式一样已？key=value&amp;key1=vaule2…的形式拼接在url的后边。<br>二、post方式请求静态url地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com/&quot;)</div><div class="line">    .build()</div><div class="line">public interface GitHubService &#123;</div><div class="line">    //无参数</div><div class="line">    @POST(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos();</div><div class="line">    //少数参数</div><div class="line">    @FormUrlEncoded</div><div class="line">    @POST(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@Field(&quot;time&quot;) long time);</div><div class="line">    //参数较多</div><div class="line">    @FormUrlEncoded</div><div class="line">    @POST(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@FieldMap Map&lt;String, String&gt; params);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>@Field和@FieldMap可以结合在一起使用。</p>
+<p>另外是不是发现了比起@GET多了一个@FromUrlEncoded的注解。如果去掉@FromUrlEncoded在post请求中使用@Field和@FieldMap，那么程序会抛出java.lang.IllegalArgumentException: @Field parameters can only be used with form encoding. (parameter #1)的错误异常。如果将@FromUrlEncoded添加在@GET上面呢，同样的也会抛出java.lang.IllegalArgumentException:FormUrlEncoded can only be specified on HTTP methods with request body (e.g., @POST).的错误异常<br>三、半静态的url地址请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com/&quot;)</div><div class="line">    .build()</div><div class="line"></div><div class="line">public interface GitHubService &#123;</div><div class="line">  @GET(&quot;users/&#123;user&#125;/repos&quot;)</div><div class="line">  Call&lt;List&lt;Repo&gt;&gt; listRepos(@Path(&quot;user&quot;) String user);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>四、动态的url地址请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com/&quot;)</div><div class="line">    .build()</div><div class="line"></div><div class="line">public interface GitHubService &#123;</div><div class="line">  @GET</div><div class="line">  Call&lt;List&lt;Repo&gt;&gt; listRepos(@Url String user);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>要注意的一些细节：<br>当@GET或@POST注解的url为全路径时（可能和baseUrl不是一个域），会直接使用注解的url的域。<br>如果请求为post实现，那么最好传递参数时使用@Field、@FieldMap和@FormUrlEncoded。因为@Query和或QueryMap都是将参数拼接在url后面的，而@Field或@FieldMap传递的参数时放在请求体的。<br>使用@Path时，path对应的路径不能包含”/“，否则会将其转化为%2F。在遇到想动态的拼接多节url时，还是使用@Url吧。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-使用Service还是Thread" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/29/使用Service还是Thread/" class="article-date">
+      <time datetime="2016-07-29T07:01:22.000Z" itemprop="datePublished">2016-07-29</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/29/使用Service还是Thread/">使用Service还是Thread</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>Service是Android的四大组件之一，被用来执行长时间的后台任务，同样，线程也可以实现在后台执行任务，它们的区别在哪呢？何时使用Service何时使用Thread呢？今天我也来说说我的理解和总结。<br>首先，需要了解Service的几个特点。<br>（1） 默认情况下，Service其实是运行在主线程中的，如果需要执行复杂耗时的操作，必须在Service中再创建一个Thread来执行任务。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/07/29/使用Service还是Thread/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Intent中显示意图和隐式意图的用法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -743,134 +873,6 @@
       
         <p class="article-more-link">
           <a href="/2016/05/08/Dagger2-依赖注解/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-RxAndroid之Rxlifecycle使用" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/29/RxAndroid之Rxlifecycle使用/" class="article-date">
-      <time datetime="2016-04-29T04:29:43.000Z" itemprop="datePublished">2016-04-29</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/29/RxAndroid之Rxlifecycle使用/">RxAndroid之Rxlifecycle使用</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>随着Android第三库的普及，RxJava和RxAndroid(<a href="https://github.com/ReactiveX/RxAndroid)越来越被人熟知，简洁的语法，配合Java8">https://github.com/ReactiveX/RxAndroid)越来越被人熟知，简洁的语法，配合Java8</a> Lambda表达式，使代码的结构更加清晰，通过线程调度器更容易控制和切换线程，种种优点，使用它的人也越来越多。但是使用不好，很容易导致内存泄露。Rxlifecycle (<a href="https://github.com/trello/RxLifecycle">https://github.com/trello/RxLifecycle</a>)<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/04/29/RxAndroid之Rxlifecycle使用/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Fragment的懒加载" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/19/Fragment的懒加载/" class="article-date">
-      <time datetime="2016-04-19T04:25:47.000Z" itemprop="datePublished">2016-04-19</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/19/Fragment的懒加载/">Fragment的懒加载</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>Fragment里的setUserVisibleHin   该方法用于告诉系统，这个Fragment的UI是否是可见的。所以我们只需要继承Fragment并重写该方法，即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/04/19/Fragment的懒加载/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
