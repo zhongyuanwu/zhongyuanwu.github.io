@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="说说Retrofit中的注解七种常用注解：@Query，@QueryMap，@Field，@FieldMap，@FormUrlEncoded，@Path，@Url一、get方式请求静态url地址：1234567891011121314Retrofit retrofit = new Retrofit.Builder()    .baseUrl(&amp;quot;https://api.github.com">
+<meta name="description" content="说说Retrofit中的注解七种常用注解：@Query，@QueryMap，@Field，@FieldMap，@FormUrlEncoded，@Path，@Url一、get方式请求静态url地址：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Retrofit2.0中注解使用方式">
 <meta property="og:url" content="http://yoursite.com/2016/08/24/Retrofit2-0中注解使用方式/index.html">
 <meta property="og:site_name" content="个人博客 - 记录每一步脚印">
-<meta property="og:description" content="说说Retrofit中的注解七种常用注解：@Query，@QueryMap，@Field，@FieldMap，@FormUrlEncoded，@Path，@Url一、get方式请求静态url地址：1234567891011121314Retrofit retrofit = new Retrofit.Builder()    .baseUrl(&amp;quot;https://api.github.com">
-<meta property="og:updated_time" content="2017-03-10T09:09:18.248Z">
+<meta property="og:description" content="说说Retrofit中的注解七种常用注解：@Query，@QueryMap，@Field，@FieldMap，@FormUrlEncoded，@Path，@Url一、get方式请求静态url地址：">
+<meta property="og:updated_time" content="2017-03-10T09:13:18.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Retrofit2.0中注解使用方式">
-<meta name="twitter:description" content="说说Retrofit中的注解七种常用注解：@Query，@QueryMap，@Field，@FieldMap，@FormUrlEncoded，@Path，@Url一、get方式请求静态url地址：1234567891011121314Retrofit retrofit = new Retrofit.Builder()    .baseUrl(&amp;quot;https://api.github.com">
+<meta name="twitter:description" content="说说Retrofit中的注解七种常用注解：@Query，@QueryMap，@Field，@FieldMap，@FormUrlEncoded，@Path，@Url一、get方式请求静态url地址：">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -294,7 +294,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>说说Retrofit中的注解<br>七种常用注解：@Query，@QueryMap，@Field，@FieldMap，@FormUrlEncoded，@Path，@Url<br>一、get方式请求静态url地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com/&quot;)</div><div class="line">    .build();</div><div class="line">public interface GitHubService &#123;</div><div class="line">    //无参数</div><div class="line">    @GET(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos();</div><div class="line">    //少数参数</div><div class="line">    @GET(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@Query(&quot;time&quot;) long time);</div><div class="line">    //参数较多</div><div class="line">    @GET(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@QueryMap Map&lt;String, String&gt; params);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <p>说说Retrofit中的注解<br>七种常用注解：@Query，@QueryMap，@Field，@FieldMap，@FormUrlEncoded，@Path，@Url<br>一、get方式请求静态url地址：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com/&quot;)</div><div class="line">    .build();</div><div class="line">public interface GitHubService &#123;</div><div class="line">    //无参数</div><div class="line">    @GET(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos();</div><div class="line">    //少数参数</div><div class="line">    @GET(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@Query(&quot;time&quot;) long time);</div><div class="line">    //参数较多</div><div class="line">    @GET(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@QueryMap Map&lt;String, String&gt; params);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>@Query和@QueryMap也可以结合在一起使用。</p>
 <p>要是对应的url在服务端支持get/post两种类型的请求的话，那么上面的@GET变为@POST也可以执行，只不过post请求时所带的参数也会像get方式一样已？key=value&amp;key1=vaule2…的形式拼接在url的后边。<br>二、post方式请求静态url地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = new Retrofit.Builder()</div><div class="line">    .baseUrl(&quot;https://api.github.com/&quot;)</div><div class="line">    .build()</div><div class="line">public interface GitHubService &#123;</div><div class="line">    //无参数</div><div class="line">    @POST(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos();</div><div class="line">    //少数参数</div><div class="line">    @FormUrlEncoded</div><div class="line">    @POST(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@Field(&quot;time&quot;) long time);</div><div class="line">    //参数较多</div><div class="line">    @FormUrlEncoded</div><div class="line">    @POST(&quot;users/stven0king/repos&quot;)</div><div class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(@FieldMap Map&lt;String, String&gt; params);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>@Field和@FieldMap可以结合在一起使用。</p>
@@ -312,7 +312,7 @@
         <p><span>本文标题:</span><a href="/2016/08/24/Retrofit2-0中注解使用方式/">Retrofit2.0中注解使用方式</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Jim</a></p>
         <p><span>发布时间:</span>2016-08-24, 17:01:52</p>
-        <p><span>最后更新:</span>2017-03-10, 17:09:18</p>
+        <p><span>最后更新:</span>2017-03-10, 17:13:18</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/08/24/Retrofit2-0中注解使用方式/" title="Retrofit2.0中注解使用方式">http://yoursite.com/2016/08/24/Retrofit2-0中注解使用方式/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/08/24/Retrofit2-0中注解使用方式/　　作者: Jim" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
