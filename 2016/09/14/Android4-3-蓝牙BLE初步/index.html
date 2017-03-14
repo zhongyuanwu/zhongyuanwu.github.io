@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Jim" />
+
+
+
+<meta name="description" content="一、关键概念：Generic Attribute Profile (GATT)通过BLE连接，读写属性类小数据的Profile通用规范。现在所有的BLE应用Profile都是基于GATT的。
+Attribute Protocol (ATT)GATT是基于ATT Protocol的。ATT针对BLE设备做了专门的优化，具体就是在传输过程中使用尽量少的数据。每个属性都有一个唯一的UUID，属性将以ch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android4.3 蓝牙BLE基础总结">
+<meta property="og:url" content="http://yoursite.com/2016/09/14/Android4-3-蓝牙BLE初步/index.html">
+<meta property="og:site_name" content="个人博客 - 记录每一步脚印">
+<meta property="og:description" content="一、关键概念：Generic Attribute Profile (GATT)通过BLE连接，读写属性类小数据的Profile通用规范。现在所有的BLE应用Profile都是基于GATT的。
+Attribute Protocol (ATT)GATT是基于ATT Protocol的。ATT针对BLE设备做了专门的优化，具体就是在传输过程中使用尽量少的数据。每个属性都有一个唯一的UUID，属性将以ch">
+<meta property="og:updated_time" content="2017-03-14T06:33:03.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android4.3 蓝牙BLE基础总结">
+<meta name="twitter:description" content="一、关键概念：Generic Attribute Profile (GATT)通过BLE连接，读写属性类小数据的Profile通用规范。现在所有的BLE应用Profile都是基于GATT的。
+Attribute Protocol (ATT)GATT是基于ATT Protocol的。ATT针对BLE设备做了专门的优化，具体就是在传输过程中使用尽量少的数据。每个属性都有一个唯一的UUID，属性将以ch">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="个人博客 - 记录每一步脚印" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Android4.3 蓝牙BLE基础总结 | 个人博客 - 记录每一步脚印</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/head.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Jim</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://melonlee.com/">李辉</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于Android</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Jim</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/head.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Jim</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="#" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android4-3-蓝牙BLE初步" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/14/Android4-3-蓝牙BLE初步/" class="article-date">
+      <time datetime="2016-09-14T06:27:26.000Z" itemprop="datePublished">2016-09-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android4.3 蓝牙BLE基础总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>一、关键概念：<br>Generic Attribute Profile (GATT)<br>通过BLE连接，读写属性类小数据的Profile通用规范。现在所有的BLE应用Profile都是基于GATT的。</p>
+<p>Attribute Protocol (ATT)<br>GATT是基于ATT Protocol的。ATT针对BLE设备做了专门的优化，具体就是在传输过程中使用尽量少的数据。每个属性都有一个唯一的UUID，属性将以characteristics and services的形式传输。<br><a id="more"></a><br>Characteristic<br>Characteristic可以理解为一个数据类型，它包括一个value和0至多个对次value的描述（Descriptor）。</p>
+<p>Descriptor<br>对Characteristic的描述，例如范围、计量单位等。</p>
+<p>Service<br>Characteristic的集合。例如一个service叫做“Heart Rate Monitor”，它可能包含多个Characteristics，其中可能包含一个叫做“heart rate measurement”的Characteristic。</p>
+<p>二、角色和职责：<br>Android设备与BLE设备交互有两组角色：</p>
+<p>中心设备和外围设备（Central vs. peripheral）；<br>GATT server vs. GATT client.</p>
+<p>Central vs. peripheral:<br>中心设备和外围设备的概念针对的是BLE连接本身。Central角色负责scan advertisement。而peripheral角色负责make advertisement。</p>
+<p>GATT server vs. GATT client:<br>这两种角色取决于BLE连接成功后，两个设备间通信的方式。</p>
+<p>举例说明：<br>现有一个活动追踪的BLE设备和一个支持BLE的Android设备。Android设备支持Central角色，而BLE设备支持peripheral角色。创建一个BLE连接需要这两个角色都存在，都仅支持Central角色或者都仅支持peripheral角色则无法建立连接。</p>
+<p>当连接建立后，它们之间就需要传输GATT数据。谁做server，谁做client，则取决于具体数据传输的情况。例如，如果活动追踪的BLE设备需要向Android设备传输sensor数据，则活动追踪器自然成为了server端；而如果活动追踪器需要从Android设备获取更新信息，则Android设备作为server端可能更合适。</p>
+<p>三、权限及feature：<br>和经典蓝牙一样，应用使用蓝牙，需要声明BLUETOOTH权限，如果需要扫描设备或者操作蓝牙设置，则还需要BLUETOOTH_ADMIN权限：</p>
+<p><uses-permission android:name="android.permission.BLUETOOTH"></uses-permission></p>
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN">
+
+<p>除了蓝牙权限外，如果需要BLE feature则还需要声明uses-feature：</p>
+<uses-feature android:name="android.hardware.bluetooth_le" android:required="true">
+
+<p>按时required为true时，则应用只能在支持BLE的Android设备上安装运行；required为false时，Android设备均可正常安装运行，需要在代码运行时判断设备是否支持BLE feature：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// Use this check to determine whether BLE is supported on the device. Then</div><div class="line">// you can selectively disable BLE-related features.</div><div class="line">if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) &#123;</div><div class="line">    Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();</div><div class="line">    finish();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>四、启动蓝牙：<br>在使用蓝牙BLE之前，需要确认Android设备是否支持BLE feature(required为false时)，另外要需要确认蓝牙是否打开。<br>如果发现不支持BLE，则不能使用BLE相关的功能。如果支持BLE，但是蓝牙没打开，则需要打开蓝牙。</p>
+<p>打开蓝牙的步骤：</p>
+<p>1、获取BluetoothAdapter</p>
+<p>BluetoothAdapter是Android系统中所有蓝牙操作都需要的，它对应本地Android设备的蓝牙模块，在整个系统中BluetoothAdapter是单例的。当你获取到它的示例之后，就能进行相关的蓝牙操作了。</p>
+<p>获取BluetoothAdapter代码示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Initializes Bluetooth adapter.</div><div class="line">final BluetoothManager bluetoothManager =</div><div class="line">        (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);</div><div class="line">mBluetoothAdapter = bluetoothManager.getAdapter();</div></pre></td></tr></table></figure></p>
+<p>注：这里通过getSystemService获取BluetoothManager，再通过BluetoothManager获取BluetoothAdapter。BluetoothManager在Android4.3以上支持(API level 18)。</p>
+<p>2、判断是否支持蓝牙，并打开蓝牙</p>
+<p>获取到BluetoothAdapter之后，还需要判断是否支持蓝牙，以及蓝牙是否打开。<br>如果没打开，需要让用户打开蓝牙：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">private BluetoothAdapter mBluetoothAdapter;</div><div class="line">...</div><div class="line">// Ensures Bluetooth is available on the device and it is enabled. If not,</div><div class="line">// displays a dialog requesting user permission to enable Bluetooth.</div><div class="line">if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) &#123;</div><div class="line">    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);</div><div class="line">    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>五、搜索BLE设备：<br>通过调用BluetoothAdapter的startLeScan()搜索BLE设备。调用此方法时需要传入BluetoothAdapter.LeScanCallback参数。<br>因此你需要实现 BluetoothAdapter.LeScanCallback接口，BLE设备的搜索结果将通过这个callback返回。</p>
+<p>由于搜索需要尽量减少功耗，因此在实际使用时需要注意：</p>
+<p>1、当找到对应的设备后，立即停止扫描；<br>2、不要循环搜索设备，为每次搜索设置适合的时间限制。避免设备不在可用范围的时候持续不停扫描，消耗电量。</p>
+<p>搜索的示例代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* Activity for scanning and displaying available BLE devices.</div><div class="line">*/</div><div class="line">public class DeviceScanActivity extends ListActivity &#123;</div><div class="line"></div><div class="line">    private BluetoothAdapter mBluetoothAdapter;</div><div class="line">    private boolean mScanning;</div><div class="line">    private Handler mHandler;</div><div class="line"></div><div class="line">    // Stops scanning after 10 seconds.</div><div class="line">    private static final long SCAN_PERIOD = 10000;</div><div class="line">    ...</div><div class="line">    private void scanLeDevice(final boolean enable) &#123;</div><div class="line">        if (enable) &#123;</div><div class="line">            // Stops scanning after a pre-defined scan period.</div><div class="line">            mHandler.postDelayed(new Runnable() &#123;</div><div class="line">                @Override</div><div class="line">                public void run() &#123;</div><div class="line">                    mScanning = false;</div><div class="line">                    mBluetoothAdapter.stopLeScan(mLeScanCallback);</div><div class="line">                &#125;</div><div class="line">            &#125;, SCAN_PERIOD);</div><div class="line"></div><div class="line">            mScanning = true;</div><div class="line">            mBluetoothAdapter.startLeScan(mLeScanCallback);</div><div class="line">        &#125; else &#123;</div><div class="line">            mScanning = false;</div><div class="line">            mBluetoothAdapter.stopLeScan(mLeScanCallback);</div><div class="line">        &#125;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">...</div><div class="line">&#125;</div><div class="line"></div><div class="line">如果你只需要搜索指定UUID的外设，你可以调用 startLeScan(UUID[], BluetoothAdapter.LeScanCallback)方法。</div><div class="line">其中UUID数组指定你的应用程序所支持的GATT Services的UUID。</div><div class="line"></div><div class="line"></div><div class="line">BluetoothAdapter.LeScanCallback的实现示例如下：</div><div class="line">private LeDeviceListAdapter mLeDeviceListAdapter;</div><div class="line">...</div><div class="line">// Device scan callback.</div><div class="line">private BluetoothAdapter.LeScanCallback mLeScanCallback =</div><div class="line">        new BluetoothAdapter.LeScanCallback() &#123;</div><div class="line">    @Override</div><div class="line">    public void onLeScan(final BluetoothDevice device, int rssi,</div><div class="line">            byte[] scanRecord) &#123;</div><div class="line">        runOnUiThread(new Runnable() &#123;</div><div class="line">           @Override</div><div class="line">           public void run() &#123;</div><div class="line">               mLeDeviceListAdapter.addDevice(device);</div><div class="line">               mLeDeviceListAdapter.notifyDataSetChanged();</div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line">   &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>注意：搜索时，你只能搜索传统蓝牙设备或者BLE设备，两者完全独立，不可同时被搜索。<br>六、连接GATT Server：<br>两个设备通过BLE通信，首先需要建立GATT连接。这里我们讲的是Android设备作为client端，连接GATT Server。<br>连接GATT Server，你需要调用BluetoothDevice的connectGatt()方法。此函数带三个参数：Context、autoConnect(boolean)和BluetoothGattCallback对象。调用示例：</p>
+<p>mBluetoothGatt = device.connectGatt(this, false, mGattCallback);</p>
+<p>函数成功，返回BluetoothGatt对象，它是GATT profile的封装。通过这个对象，我们就能进行GATT Client端的相关操作。BluetoothGattCallback用于传递一些连接状态及结果。</p>
+<p>BluetoothGatt常规用到的几个操作示例:</p>
+<p>connect() ：连接远程设备。<br>discoverServices() : 搜索连接设备所支持的service。<br>disconnect()：断开与远程设备的GATT连接。<br>close()：关闭GATT Client端。<br>readCharacteristic(characteristic) ：读取指定的characteristic。<br>setCharacteristicNotification(characteristic, enabled) ：设置当指定characteristic值变化时，发出通知。<br>getServices() ：获取远程设备所支持的services。<br>等等。</p>
+<p>注：<br>1、某些函数调用之间存在先后关系。例如首先需要connect上才能discoverServices。<br>2、一些函数调用是异步的，需要得到的值不会立即返回，而会在BluetoothGattCallback的回调函数中返回。例如discoverServices与onServicesDiscovered回调，readCharacteristic与onCharacteristicRead回调，setCharacteristicNotification与onCharacteristicChanged回调等。</p>
+</uses-feature></uses-permission>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/09/14/Android4-3-蓝牙BLE初步/">Android4.3 蓝牙BLE基础总结</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Jim</a></p>
+        <p><span>Created:</span>2016-09-14, 14:27:26</p>
+        <p><span>Updated:</span>2017-03-14, 14:33:03</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/09/14/Android4-3-蓝牙BLE初步/" title="Android4.3 蓝牙BLE基础总结">http://yoursite.com/2016/09/14/Android4-3-蓝牙BLE初步/</a>
+            <span class="copy-path" data-clipboard-text="From http://yoursite.com/2016/09/14/Android4-3-蓝牙BLE初步/　　By Jim" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/11/08/RecyclerView基本使用和概念/">
+                    RecyclerView总结之基本使用和概念
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/08/24/Retrofit2-0中注解使用方式/">
+                    Retrofit2.0中注解使用方式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android4.3 蓝牙BLE基础总结　| 个人博客 - 记录每一步脚印　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/11/08/RecyclerView基本使用和概念/" title="Pre: RecyclerView总结之基本使用和概念">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/08/24/Retrofit2-0中注解使用方式/" title="Next: Retrofit2.0中注解使用方式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Android中的引用类型/">Android中的引用类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/21/RxAndroid之Rxlifecycle使用/">RxAndroid之Rxlifecycle使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/13/RxJava集合/">RxJava系列专题（Android方向）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/14/RecyclerView（二）之Apater封装/">RecyclerView总结之Apater封装</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/08/RecyclerView基本使用和概念/">RecyclerView总结之基本使用和概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/14/Android4-3-蓝牙BLE初步/">Android4.3 蓝牙BLE基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/24/Retrofit2-0中注解使用方式/">Retrofit2.0中注解使用方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/29/使用Service还是Thread/">使用Service还是Thread</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/08/Intent中显示意图和隐式意图的用法/">Intent中显示意图和隐式意图的用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/25/深入理解-intent/">深入理解 intent</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/19/图片旋转/">图片旋转</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/09/属性动画/">属性动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/常见的混淆配置项/">常见的混淆配置项</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/27/高内聚、低耦合/">高内聚、低耦合（设计模式所解决 要实现的目标）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/CoordinatorLayout/">CoordinatorLayout+ToolBar+AppBarLayout(向上滚动隐藏指定的View如toolbar)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/08/Dagger2-依赖注解/">Dagger2(依赖注解)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/Fragment的懒加载/">Fragment的懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/02/嵌套滑动机制原理-NestedScroll/">嵌套滑动机制原理(NestedScroll)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/线程更新UI/">线程更新UI</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/并发基础（一）/">并发基础（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/多态与接口/">多态与接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/复用类/">Java复用类</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/10/2016学习规划/">2016学习规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/09/sdfa/">Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/06/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Jim
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
